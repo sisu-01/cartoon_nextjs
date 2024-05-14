@@ -1,3 +1,5 @@
+import Paging from "@/components/testPaging/paging";
+
 export const generateMetadata = async ({params}) => {
   const {seriesId} = params;
   const series = await fetch(`http:/localhost:4000/api/list?id=${seriesId}`).then((res) => res.json());
@@ -27,6 +29,7 @@ const SeriesInfo = async ({params}) => {
           </a>
         </div>
       ))}
+      <Paging perPage={series.perPage} count={series.count} pageBtn={5} />
     </div>
   );
 }
