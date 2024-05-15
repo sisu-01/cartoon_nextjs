@@ -1,18 +1,14 @@
-"use client";
-
-import { useSearchParams, usePathname } from 'next/navigation';
-import Pagination from 'react-bootstrap/Pagination';
+import Link from "next/link";
+import styles from "./paging.module.css";
 
 /**
+ * @param {Number} page 현재 페이지
  * @param {Number} perPage 한 페이지에 표시될 게시글 수
  * @param {Number} count 전체 게시글 수
  * @param {Number} pageBtn 페이징 버튼 수
  * @param {function} handler 클릭 핸들러
  */
-const Paging = ({perPage, count, pageBtn, handler}) => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const page = Number(searchParams.get("page"));
+const Paging = ({page, perPage, count, pageBtn, pathName}) => {
   const pageGroup = Math.ceil(page / pageBtn);//현재 그룹
   const totalPage = Math.ceil(count / perPage);//전체 페이지 개수
   const totalGroup = Math.ceil(totalPage / pageBtn);//전체 그룹 개수
@@ -24,28 +20,28 @@ const Paging = ({perPage, count, pageBtn, handler}) => {
 
   const newArr = [];
   if (pageGroup > 1) {
-    newArr.push(<Pagination.First key='first' onClick={() => handler(1)} />);
-    newArr.push(<Pagination.Prev key='prev' onClick={() => handler(startPage-1)} />);
+    newArr.push(<Link key='first' href={`${pathName}?page=${1}`}>first</Link>);
+    newArr.push(<Link key='prev' href={`${pathName}?page=${startPage-1}`}>prev</Link>);
   } else {
-    newArr.push(<Pagination.First key='disabled_first' disabled />);
-    newArr.push(<Pagination.Prev key='disabled_prev' disabled />);
+    newArr.push(<div key='_first'>first</div>);
+    newArr.push(<div key='_prev'>prev</div>);
   }
   for (let i = startPage; i <= endPage; i++) {
     if (page === i) {
-        newArr.push(<Pagination.Item key={i} active>{i}</Pagination.Item>);
+        newArr.push(<div key={i}>{i}</div>);
     } else {
-        newArr.push(<Pagination.Item key={i} href={`${pathname}?page=${i}`}>{i}</Pagination.Item>);
+        newArr.push(<Link key={i} href={`${pathName}?page=${i}`}>{i}</Link>);
     }
   }
   if (pageGroup < totalGroup) {
-    newArr.push(<Pagination.Next key='next' onClick={() => handler(endPage+1)} />);
-    newArr.push(<Pagination.Last key='last' onClick={() => handler(totalPage)} />);
+    newArr.push(<Link key='next' href={`${pathName}?page=${endPage+1}`}>prev</Link>);
+    newArr.push(<Link key='last' href={`${pathName}?page=${totalPage}`}>last</Link>);
   } else {
-    newArr.push(<Pagination.Next key='disabled_next' disabled />);
-    newArr.push(<Pagination.Last key='disabled_last' disabled />);
+    newArr.push(<div key='_next'>next</div>);
+    newArr.push(<div key='_last'>last</div>);
   }
   return (
-    <Pagination size='md' className='justify-content-center'>{newArr}</Pagination>
+    <div className={styles.container}>{newArr}</div>
   );
 }
 
