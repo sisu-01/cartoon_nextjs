@@ -28,8 +28,8 @@ const Series = async () => {
   return (
     <div>
       {seriesJson.list.map((series) => (
-          <div>
-            <Link href={`/series/${series.id}`} key={series.id}>
+          <div key={series.id}>
+            <Link href={`/series/${series.id}`}>
               {series.title}
             </Link>
           </div>
