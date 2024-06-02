@@ -26,7 +26,6 @@ const Cartoons = async () => {
 
   return (
     <div>
-      tq
       {cartoons.map((cartoon) => (
         <div key={cartoon.id}>
           <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">{cartoon.title}</a>
