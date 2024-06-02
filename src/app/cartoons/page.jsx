@@ -20,17 +20,19 @@ const Cartoons = async () => {
   // API로 가져오기
   // const cartoons = await getCartoons();
   const cartoons = await getCartoons();
-  console.log('tq');
-  console.log(cartoons);
+  const temp = cartoons[0];
+  console.log(temp, typeof(temp));
+  console.log('title of temp :', temp.title, temp['title']);
 
   return (
     <div>
-      {cartoons.list.map((cartoon) => (
+      tq
+      {/* {cartoons.map((cartoon) => (
         <div>
-          {cartoon.title}
+          z{cartoon.title}z
         </div>
-      ))}
-      <Paging page={cartoons.page} perPage={cartoons.perPage} count={cartoons.count} pageBtn={10} handler={null} />
+      ))} */}
+      {/* <Paging page={cartoons.page} perPage={cartoons.perPage} count={cartoons.count} pageBtn={10} handler={null} /> */}
     </div>
   );
 }
