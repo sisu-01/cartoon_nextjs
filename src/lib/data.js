@@ -1,8 +1,5 @@
-import { Cat, Cartoons } from "./models";
+import { Cartoons } from "./models";
 import { connectToDb } from "./utils";
-
-const kitty = new Cat({ name: 'Zildjian' });
-kitty.save().then(() => console.log('meow'));
 
 export const getCartoons = async () => {
   try {
