@@ -5,7 +5,6 @@ const connection = {};
 export const connectToDb = async () => {
   try {
     if (connection.isConnected) {
-      console.log("이미 있네요 굳");
       return;
     }
     const db = await mongoose.connect(process.env.MONGO);
