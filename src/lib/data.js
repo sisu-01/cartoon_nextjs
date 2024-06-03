@@ -39,5 +39,6 @@ export const getWriterInfo = async (writerId) => {
     return writerInfo;
   } catch (error) {
     throw new Error("failed to fetch writer info");
+    //수정 404 하는 방법
   }
 }
