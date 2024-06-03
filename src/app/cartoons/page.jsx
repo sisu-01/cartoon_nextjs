@@ -1,4 +1,5 @@
 import Paging from "@/components/paging/paging";
+import { dateFormat } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
 
 export const metadata = {
@@ -29,7 +30,7 @@ const Cartoons = async () => {
       {cartoons.map((cartoon) => (
         <div key={cartoon.id}>
           <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">{cartoon.title}</a>
-          {cartoon.recommend}{cartoon.writer_id}{cartoon.writer_nickname}
+          {cartoon.recommend}{cartoon.writer_id}{cartoon.writer_nickname}{dateFormat(cartoon.date)}
         </div>
       ))}
       <Paging page={cartoons.page} perPage={cartoons.perPage} count={cartoons.count} pageBtn={10} handler={null} />

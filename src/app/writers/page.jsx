@@ -1,3 +1,4 @@
+import { dateFormat } from "@/lib/common";
 import { getWriters } from "@/lib/data";
 import Link from "next/link";
 
@@ -20,7 +21,7 @@ const Writers = async () => {
               <Link href={`/writers/${writer.id}`}>{writer.nickname_history[0].nickname}</Link>
             </span>
           }
-          {writer.recommend}{writer.writer_id}{writer.writer_nickname}
+          {writer.recommend}{writer.writer_id}{writer.writer_nickname}{dateFormat(writer.first_date)}
         </div>
       ))}
     </div>
