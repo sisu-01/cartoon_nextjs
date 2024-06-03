@@ -19,12 +19,12 @@ export const metadata = {
 //   return res.json();
 // }
 
-const Cartoons = async ({searchParams}) => {
-  const {page} = searchParams;
+const Cartoons = async ({ searchParams }) => {
+  const { page } = searchParams;
   const currentPage = Number(page) || 1;
   // API로 가져오기
   // const cartoons = await getCartoons();
-  const {cartoons, count, limit} = await getCartoons(currentPage);
+  const { cartoons, count, limit } = await getCartoons(currentPage);
   /*
   _id: new ObjectId('665c7bc593ec7947de663e4c'),
   id: 688414,

@@ -7,30 +7,24 @@ export const getCartoons = async (page) => {
   try {
     await connectToDb();
     const skip = (page - 1) * limit;
-    
-    const cartoons = await Cartoons.find({}).skip(skip).limit(limit);
-
-    // 전체 문서 수를 가져와 총 페이지 수 계산
+    const cartoons = await Cartoons.find().skip(skip).limit(limit);
     const count = await Cartoons.countDocuments();
-
-    return {
-      cartoons,
-      count,
-      limit: limit
-    };
+    return { cartoons, count, limit };
   } catch (error) {
     console.log(error);
-    throw new Error("faile to fetch cartoons!");
+    throw new Error("failed to fetch cartoons!");
   }
 }
 
-export const getWriters = async () => {
+export const getWriters = async (page) => {
   try {
     await connectToDb();
-    const writers = await Writers.find({});
-    return writers;
+    const skip = (page - 1) * limit;
+    const writers = await Writers.find().skip(skip).limit(limit);
+    const count = await Writers.countDocuments();
+    return { writers, count, limit };
   } catch (error) {
     console.log(error);
-    throw new Error("faile to fetch writers!");
+    throw new Error("failed to fetch writers!");
   }
 }
