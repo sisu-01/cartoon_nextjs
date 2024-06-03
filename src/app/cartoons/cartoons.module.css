@@ -8,6 +8,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.cartoon {
+  flex: 1;
+}
 .title {
   font-weight: bold;
 }
