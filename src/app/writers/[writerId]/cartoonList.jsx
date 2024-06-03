@@ -1,29 +1,51 @@
-import { getWriterCartoons } from "@/lib/data";
-import styles from "./writerInfo.module.css";
-import { dateFormat } from "@/lib/common";
-import Paging from "@/components/testPaging/paging";
+"use client";
 
-const CartoonList = async ({writerId}) => {
-  const { cartoons, count, limit } = await getWriterCartoons(writerId, 1);
-  console.log(count, limit);
+import { useEffect, useState } from "react";
+import styles from "./writerInfo.module.css";
+
+const CartoonList = ({writerId}) => {
+  console.log("CartoonList");
+  const [a, setA] = useState(null);
+
+  useEffect(() => {
+    getCartoons(writerId);
+  }, []);
+
+  const getCartoons = (writerId) => {
+    fetch(`http://localhost:3000/api/writers/${writerId}`)
+    .then(res => res.json())
+    .then(data => {
+      const { cartoons, count, limit } = data;
+      setA(cartoons);
+    })
+    .catch(err => {
+      throw new Error("err");
+    })
+  }
+
+  const renderCartoonList = () => {
+    if (a) {
+      const newArr = [];
+      a.map((q) => {
+        newArr.push(
+          <div key={q.id}>
+            {q.title}
+          </div>
+        )
+      });
+      return newArr;
+    } else {
+      return (
+        <div>
+          없어용;
+        </div>
+      )
+    }
+  }
+
   return (
     <div className={styles.test}>
-      {cartoons.map((cartoon) => (
-        <div className={styles.wrappers} key={cartoon.id}>
-          <div className={styles.cartoon}>
-            <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
-              <div>
-                <span className={styles.title}>{cartoon.title}</span>
-                <div className={styles.info}>
-                  <span>{cartoon.recommend}</span>
-                  <span>{dateFormat(cartoon.date)}</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      ))}
-      <Paging page={1} perPage={limit} count={count} pageBtn={10} pathName={`/cartoons`} />
+      {renderCartoonList()}
     </div>
   );
 }
