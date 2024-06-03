@@ -1,5 +1,7 @@
 import { dateFormat } from "@/lib/common";
 import { getWriterInfo } from "@/lib/data";
+import CartoonList from "./cartoonList";
+import styles from "./writerInfo.module.css";
 
 export const metadata = {
   title: 'Writer Info',
@@ -52,6 +54,7 @@ const WriterInfo = async ({ params }) => {
       {writer.count}
       {writer.recommend}
       {writer.average}
+      <CartoonList writerId={writerId} />
     </div>
   );
 }

@@ -42,3 +42,15 @@ export const getWriterInfo = async (writerId) => {
     //수정 404 하는 방법
   }
 }
+
+export const getWriterCartoons = async (writerId, page) => {
+  try {
+    await connectToDb();
+    const skip = (page - 1) * limit;
+    const cartoons = await Cartoons.find({ writer_id: writerId }).skip(skip).limit(limit);
+    const count = await Cartoons.countDocuments();
+    return { cartoons, count, limit };
+  } catch (error) {
+    throw new Error("failed to fetch writer cartoons");
+  }
+}
