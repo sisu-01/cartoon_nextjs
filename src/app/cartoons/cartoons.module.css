@@ -1,0 +1,24 @@
+.container {
+  margin: auto;
+  width: 650px;
+}
+.wrappers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.cartoon {
+
+}
+.title {
+  font-weight: bold;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.writer {
+
+}

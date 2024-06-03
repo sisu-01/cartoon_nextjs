@@ -1,6 +1,8 @@
 import Paging from "@/components/paging/paging";
 import { dateFormat } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
+import styles from "./cartoons.module.css";
+import Link from "next/link";
 
 export const metadata = {
   title: 'Cartoons',
@@ -21,16 +23,34 @@ const Cartoons = async () => {
   // API로 가져오기
   // const cartoons = await getCartoons();
   const cartoons = await getCartoons();
-  const temp = cartoons[0];
-  console.log(temp);
-  console.log(temp['date']);
-
+  /*
+  _id: new ObjectId('665c7bc593ec7947de663e4c'),
+  id: 688414,
+  title: '한국인들의 이중성 만화',
+  date: 2024-05-19T12:30:12.000Z,
+  recommend: 91,
+  writer_object_id: new ObjectId('665c7b1203272be39860dc5c'),
+  writer_id: 'a',
+  writer_nickname: '카갤러'
+  */
   return (
-    <div>
+    <div className={styles.container}>
       {cartoons.map((cartoon) => (
-        <div key={cartoon.id}>
-          <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">{cartoon.title}</a>
-          {cartoon.recommend}{cartoon.writer_id}{cartoon.writer_nickname}{dateFormat(cartoon.date)}
+        <div className={styles.wrappers} key={cartoon.id}>
+          <div className={styles.cartoon}>
+            <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
+              <div>
+                <span className={styles.title}>{cartoon.title}</span>
+                <div className={styles.info}>
+                  <span>{cartoon.recommend}</span>
+                  <span>{dateFormat(cartoon.date)}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div className={styles.writer}>
+            <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
+          </div>
         </div>
       ))}
       <Paging page={cartoons.page} perPage={cartoons.perPage} count={cartoons.count} pageBtn={10} handler={null} />
