@@ -28,3 +28,16 @@ export const getWriters = async (page) => {
     throw new Error("failed to fetch writers!");
   }
 }
+
+export const getWriterInfo = async (writerId) => {
+  try {
+    await connectToDb();
+    const writerInfo = await Writers.findOne({ id: writerId });
+    if (!writerInfo) {
+      throw new Error("WriterInfo not found");
+    }
+    return writerInfo;
+  } catch (error) {
+    throw new Error("failed to fetch writer info");
+  }
+}
