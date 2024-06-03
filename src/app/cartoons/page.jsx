@@ -1,4 +1,4 @@
-import Paging from "@/components/paging/paging";
+import Paging from "@/components/testPaging/paging";
 import { dateFormat } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";
@@ -55,7 +55,7 @@ const Cartoons = async ({searchParams}) => {
           </div>
         </div>
       ))}
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} handler={null} />
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/cartoons`} />
     </div>
   );
 }

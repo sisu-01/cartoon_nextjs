@@ -6,7 +6,7 @@ import styles from "./paging.module.css";
  * @param {Number} perPage 한 페이지에 표시될 게시글 수
  * @param {Number} count 전체 게시글 수
  * @param {Number} pageBtn 페이징 버튼 수
- * @param {function} handler 클릭 핸들러
+ * @param {String} pathName 경로 ㅋㅋ
  */
 const Paging = ({page, perPage, count, pageBtn, pathName}) => {
   const pageGroup = Math.ceil(page / pageBtn);//현재 그룹
