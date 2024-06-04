@@ -43,14 +43,15 @@ export const getWriterInfo = async (writerId) => {
   }
 }
 
-// export const getWriterCartoons = async (writerId, page) => {
-//   try {
-//     await connectToDb();
-//     const skip = (page - 1) * limit;
-//     const cartoons = await Cartoons.find({ writer_id: writerId }).skip(skip).limit(limit);
-//     const count = await Cartoons.countDocuments();
-//     return { cartoons, count, limit };
-//   } catch (error) {
-//     throw new Error("failed to fetch writer cartoons");
-//   }
-// }
+export const getAnonWriterInfo = async (nickname) => {
+  try {
+    await connectToDb();
+    const writerInfo = await Writers.findOne({ id: "a", nickname: nickname});
+    if (!writerInfo) {
+      throw new Error("WriterInfo not found");
+    }
+    return writerInfo;
+  } catch (error) {
+    throw new Error("failed to fetch anon writer");
+  }
+}

@@ -18,10 +18,13 @@ const Writers = async ({ searchParams }) => {
     <div>
       {writers.map((writer) => (
         <div key={writer._id}>
-          {writer.id === "a"? writer.nickname :
+          {writer.id === "a"? (
+            <Link href={`/writers/anon?nickname=${writer.nickname}`}>{writer.nickname}</Link>
+          ) : (
             <span>
               <Link href={`/writers/${writer.id}`}>{writer.nickname_history[0].nickname}</Link>
             </span>
+          )
           }
           {writer.recommend}{writer.writer_id}{writer.writer_nickname}{dateFormat(writer.first_date)}
         </div>

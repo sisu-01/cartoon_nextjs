@@ -51,7 +51,12 @@ const Cartoons = async ({ searchParams }) => {
             </a>
           </div>
           <div className={styles.writer}>
-            <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
+            {cartoon.writer_id === "a"? (
+              <Link href={`/writers/anon?nickname=${cartoon.writer_nickname}`}>{cartoon.writer_nickname}</Link>
+            ) : (
+              <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
+            )}
+            
           </div>
         </div>
       ))}
