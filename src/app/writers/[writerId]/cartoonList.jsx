@@ -12,7 +12,7 @@ const CartoonList = ({writerId}) => {
   }, []);
 
   const getCartoons = (writerId) => {
-    fetch(`http://localhost:3000/api/writers/${writerId}`)
+    fetch(`/api/writers/${writerId}`)
     .then(res => res.json())
     .then(data => {
       const { cartoons, count, limit } = data;
