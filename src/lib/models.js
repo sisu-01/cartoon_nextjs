@@ -7,7 +7,8 @@ const cartoonsSchema = new mongoose.Schema({
   recommend: Number,
   writer_object_id: mongoose.ObjectId,
   writer_id: String,
-  writer_nickname: String
+  writer_nickname: String,
+  series_id: Number
 });
 
 const nicknameHistorySchema = new mongoose.Schema({
@@ -26,5 +27,16 @@ const writersSchema = new mongoose.Schema({
   average: Number
 })
 
+const seriesSchema = new mongoose.Schema({
+  id: Number,
+  title: String,
+  writer_id: String,
+  writer_nickname: String,
+  count: Number,
+  last_date: Date,
+  average: Number,
+})
+
 export const Cartoons = mongoose.models.Cartoons || mongoose.model("Cartoons", cartoonsSchema);
 export const Writers = mongoose.models.Writers || mongoose.model("Writers", writersSchema);
+export const Series = mongoose.models.Series || mongoose.model("Series", seriesSchema);

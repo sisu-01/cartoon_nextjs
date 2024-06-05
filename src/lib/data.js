@@ -1,4 +1,4 @@
-import { Cartoons, Writers } from "./models";
+import { Cartoons, Writers, Series } from "./models";
 import { connectToDb } from "./utils";
 
 const limit = 10;
@@ -53,5 +53,19 @@ export const getAnonWriterInfo = async (nickname) => {
     return writerInfo;
   } catch (error) {
     throw new Error("failed to fetch anon writer");
+  }
+}
+
+export const getSeries = async (page) => {
+  const limit = 30;
+  try {
+    await connectToDb();
+    const skip = (page - 1) * limit;
+    const series = await Series.find().skip(skip).limit(limit);
+    const count = await Series.countDocuments();
+    return { series, count, limit };
+  } catch (error) {
+    console.log(error);
+    throw new Error("failed to fetch series!");
   }
 }
