@@ -69,3 +69,27 @@ export const getSeries = async (page) => {
     throw new Error("failed to fetch series!");
   }
 }
+
+export const getSeriesDetail = async (series_id) => {
+  try {
+    await connectToDb();
+    const series = await Series.find({ id: series_id });
+    return series;
+  } catch (error) {
+    console.log(error);
+    throw new Error("failed to fetch series detail");
+  }
+}
+
+export const  getSeriesList = async (series_id, page) => {
+  try {
+    await connectToDb();
+    const skip = (page - 1) * limit;
+    const cartoons = await Cartoons.find({ series_id: series_id }).skip(skip).limit(limit);
+    const count = await Cartoons.countDocuments({ series_id: series_id });
+    return { cartoons, count, limit };
+  } catch (error) {
+    console.log(error);
+    throw new Error("failed to fetch series detail");
+  }
+}
