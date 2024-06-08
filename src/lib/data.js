@@ -85,7 +85,7 @@ export const  getSeriesList = async (series_id, page) => {
   try {
     await connectToDb();
     const skip = (page - 1) * limit;
-    const cartoons = await Cartoons.find({ series_id: series_id }).skip(skip).limit(limit);
+    const cartoons = await Cartoons.find({ series_id: series_id }).sort({ _id: -1 }).skip(skip).limit(limit);
     const count = await Cartoons.countDocuments({ series_id: series_id });
     return { cartoons, count, limit };
   } catch (error) {

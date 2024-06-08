@@ -33,7 +33,7 @@ const seriesSchema = new mongoose.Schema({
   writer_id: String,
   writer_nickname: String,
   count: Number,
-  last_date: Date,
+  last_update: Date,
   average: Number,
 })
 

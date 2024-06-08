@@ -1,4 +1,5 @@
 import Paging from "@/components/testPaging/paging";
+import { isDateWithin14Days } from "@/lib/common";
 import { getSeries } from "@/lib/data";
 import Link from "next/link";
 
@@ -21,15 +22,18 @@ const Series = async ({ searchParams }) => {
   count: 2,
   last_update: '2024-05-05 21:08:37',
   average: 213
-}
+  }
    */
-
-  const seriesJson = await getSeries();
   return (
     <div>
       {series.map((ser) => (
         <div key={ser.id}>
-          <Link href={`/series/${ser.id}`}>{ser.title}</Link>
+          <Link href={`/series/${ser.id}`}>
+            {isDateWithin14Days(ser.last_update) && (
+              <span><b>UP</b></span>
+            )}
+            {ser.title}
+          </Link>
         </div>
       ))}
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/series`} />

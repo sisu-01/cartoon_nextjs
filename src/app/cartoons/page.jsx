@@ -1,5 +1,5 @@
 import Paging from "@/components/testPaging/paging";
-import { dateFormat } from "@/lib/common";
+import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";
 import Link from "next/link";
@@ -42,6 +42,9 @@ const Cartoons = async ({ searchParams }) => {
           <div className={styles.cartoon}>
             <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
               <div>
+                {isDateWithin14Days(cartoon.date) && (
+                  <span><b>UP</b></span>
+                )}
                 <span className={styles.title}>{cartoon.title}</span>
                 <div className={styles.info}>
                   <span>{cartoon.recommend}</span>
