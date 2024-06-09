@@ -35,6 +35,7 @@ const seriesSchema = new mongoose.Schema({
   count: Number,
   last_update: Date,
   average: Number,
+  cartoons_id_list: [Number],
 })
 
 export const Cartoons = mongoose.models.Cartoons || mongoose.model("Cartoons", cartoonsSchema);
