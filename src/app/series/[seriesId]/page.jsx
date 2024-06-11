@@ -6,8 +6,10 @@ import Link from "next/link";
 
 const SeriesPage = async ({ params, searchParams }) => {
   const { seriesId } = params;
+
   const { page } = searchParams;
-  const currentPage = Number(page) || 1;
+  const currentPage = (Number(page) > 0 ? Number(page) : 1);
+
   const { cartoons, count, limit } = await getSeriesList(seriesId, currentPage);
 
   return (

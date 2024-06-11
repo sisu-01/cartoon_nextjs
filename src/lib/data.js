@@ -87,7 +87,7 @@ export const  getSeriesList = async (series_id, page) => {
     const skip = (page - 1) * limit;
     const temp = await Series.find({ id: series_id }, { _id: 0, cartoons_id_list: 1, count: 1 });
     const { cartoons_id_list, count } = temp[0];
-    const paging = cartoons_id_list.slice(skip, limit);
+    const paging = cartoons_id_list.slice(skip, skip + limit);
     const cartoons = await Cartoons.find({ id: { $in: paging}}).sort({ _id: 1 });
     return { cartoons, count, limit };
   } catch (error) {
