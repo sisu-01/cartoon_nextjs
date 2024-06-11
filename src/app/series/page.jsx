@@ -10,7 +10,8 @@ export const metadata = {
 
 const Series = async ({ searchParams }) => {
   const { page } = searchParams;
-  const currentPage = Number(page) || 1;
+  const currentPage = (Number(page) > 0 ? Number(page) : 1);
+  
   const { series, count, limit } = await getSeries(currentPage);
   /*
   {

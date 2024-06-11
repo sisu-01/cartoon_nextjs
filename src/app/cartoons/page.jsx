@@ -21,7 +21,8 @@ export const metadata = {
 
 const Cartoons = async ({ searchParams }) => {
   const { page } = searchParams;
-  const currentPage = Number(page) || 1;
+  const currentPage = (Number(page) > 0 ? Number(page) : 1);
+  
   // API로 가져오기
   // const cartoons = await getCartoons();
   const { cartoons, count, limit } = await getCartoons(currentPage);

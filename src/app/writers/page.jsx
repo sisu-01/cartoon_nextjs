@@ -10,7 +10,7 @@ export const metadata = {
 
 const Writers = async ({ searchParams }) => {
   const { page } = searchParams;
-  const currentPage = Number(page) || 1;
+  const currentPage = (Number(page) > 0 ? Number(page) : 1);
 
   const { writers, count, limit } = await getWriters(currentPage);
   
