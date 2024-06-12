@@ -8,7 +8,7 @@ export const GET = async (request, { params }) => {
   try {
     await connectToDb();
     const { writerId } = params;
-    const page = 1;
+    const page = request.nextUrl.searchParams.get('page');
     const skip = (page - 1) * limit;
     const cartoons = await Cartoons.find({ writer_id: writerId }).skip(skip).limit(limit);
     const count = await Cartoons.countDocuments();
