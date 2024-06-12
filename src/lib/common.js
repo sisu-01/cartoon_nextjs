@@ -5,7 +5,12 @@
  * @returns {String} 예쁜 날짜
  */
 export function dateFormat(date, type='default'){
-  let d = date;
+  let d;
+  if (typeof date === 'string') {
+    d = new Date(date);
+  } else if (date instanceof Date) {
+    d = date;
+  }
   let year = d.getFullYear();
   let month = '' + (d.getMonth() + 1);
   let day = '' + d.getDate();
