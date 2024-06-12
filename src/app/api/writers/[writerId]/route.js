@@ -11,7 +11,8 @@ export const GET = async (request, { params }) => {
     const page = request.nextUrl.searchParams.get('page');
     const skip = (page - 1) * limit;
     const cartoons = await Cartoons.find({ writer_id: writerId }).skip(skip).limit(limit);
-    const count = await Cartoons.countDocuments();
+    const count = await Cartoons.countDocuments({ writer_id: writerId });
+    console.log(count, limit);
     return NextResponse.json({ cartoons, count, limit });
   } catch (error) {
     throw new Error("failed to fetch writer cartoons");
