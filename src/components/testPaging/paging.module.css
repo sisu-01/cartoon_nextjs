@@ -2,3 +2,13 @@
   display: flex;
   gap: 10px;
 }
+
+.link {
+  color: blue; /* 링크 색상 */
+  text-decoration: underline; /* 밑줄 */
+  cursor: pointer; /* 포인터 커서 */
+}
+
+.link:hover {
+  color: darkblue; /* 마우스를 올렸을 때 색상 변경 */
+}
