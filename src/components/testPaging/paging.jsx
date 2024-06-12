@@ -22,8 +22,8 @@ const Paging = ({page, perPage, count, pageBtn, pathName, onClick}) => {
   const newArr = [];
   if (pageGroup > 1) {
     if (onClick) {
-      newArr.push(<div key='first' onClick={() => onClick(1)}>first</div>);
-      newArr.push(<div key='prev' onClick={() => onClick(startPage - 1)}>prev</div>);
+      newArr.push(<div className={styles.link} key='first' onClick={() => onClick(1)}>first</div>);
+      newArr.push(<div className={styles.link} key='prev' onClick={() => onClick(startPage - 1)}>prev</div>);
     } else {
       newArr.push(<Link key='first' href={`${pathName}?page=1`}>first</Link>);
       newArr.push(<Link key='prev' href={`${pathName}?page=${startPage - 1}`}>prev</Link>);
@@ -45,8 +45,8 @@ const Paging = ({page, perPage, count, pageBtn, pathName, onClick}) => {
   }
   if (pageGroup < totalGroup) {
     if (onClick) {
-      newArr.push(<div key='next' onClick={() => onClick(endPage + 1)}>next</div>);
-      newArr.push(<div key='last' onClick={() => onClick(totalPage)}>last</div>);
+      newArr.push(<div className={styles.link} key='next' onClick={() => onClick(endPage + 1)}>next</div>);
+      newArr.push(<div className={styles.link} key='last' onClick={() => onClick(totalPage)}>last</div>);
     } else {
       newArr.push(<Link key='next' href={`${pathName}?page=${endPage + 1}`}>next</Link>);
       newArr.push(<Link key='last' href={`${pathName}?page=${totalPage}`}>last</Link>);
