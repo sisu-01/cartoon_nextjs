@@ -7,22 +7,19 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { dateFormat, isDateWithin14Days } from "@/lib/common";
 
 const CartoonList = ({ writerId }) => {
-  console.log("CartoonList");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const currentPage = Number(searchParams.get('page')) || 1;  
 
   const [cartoons, setCartoons] = useState(null);
-  const [page, setPage] = useState(currentPage);
   const [count, setCount] = useState(null);
   const [limit, setLimit] = useState(null);
 
   useEffect(() => {
-    getCartoons(writerId, page);
-  }, [page]);
+    getCartoons(writerId, currentPage);
+  }, [currentPage]);
 
   const getCartoons = (writerId, page) => {
-    console.log(`/api/writers/${writerId}?page=${page}`);
     fetch(`/api/writers/${writerId}?page=${page}`)
       .then(res => res.json())
       .then(({ cartoons, count, limit }) => {
@@ -36,7 +33,6 @@ const CartoonList = ({ writerId }) => {
   }
 
   const handlePageChange = (newPage) => {
-    setPage(newPage);
     const newParams = new URLSearchParams(searchParams);
     newParams.set("page", newPage);
     router.push(`?${newParams.toString()}`);
