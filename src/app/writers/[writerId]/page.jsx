@@ -1,7 +1,7 @@
 import { dateFormat } from "@/lib/common";
 import { getWriterInfo } from "@/lib/data";
-import CartoonList from "./cartoonList";
 import styles from "./writerInfo.module.css";
+import CartoonsList from "@/components/cartoonsList/cartoonsList";
 
 export const metadata = {
   title: 'Writer Info',
@@ -67,7 +67,7 @@ const WriterInfo = async ({ params }) => {
         <span>평균 개추: {writer.average}</span>
       </div>
       <hr/>
-      <CartoonList writerId={writerId} />
+      <CartoonsList writerId={writerId} />
     </div>
   );
 }

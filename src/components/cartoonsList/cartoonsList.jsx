@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "./writerInfo.module.css";
+import styles from "./cartoonsList.module.css";
 import Paging from "@/components/testPaging/paging";
 import { useRouter, useSearchParams } from 'next/navigation'
 import { dateFormat, isDateWithin14Days } from "@/lib/common";
 
-const CartoonList = ({ writerId }) => {
+const CartoonsList = ({ writerId }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;  
@@ -68,4 +68,4 @@ const CartoonList = ({ writerId }) => {
   );
 }
 
-export default CartoonList;
+export default CartoonsList;
