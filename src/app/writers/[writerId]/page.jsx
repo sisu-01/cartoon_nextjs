@@ -90,7 +90,7 @@ const WriterInfo = async ({ params, searchParams }) => {
             </a>
           </div>
         ))}
-        <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/writers/${writerId}`} />
+        <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
       </div>
     </div>
   );

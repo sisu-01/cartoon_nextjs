@@ -86,7 +86,6 @@ export const getWriterCartoons = async (writerId, page) => {
   try {
     await connectToDb();
     const skip = (page - 1) * limit;
-    console.log(skip, limit);
     const cartoons = await Cartoons.find({ writer_id: writerId }).sort({ _id: -1 }).skip(skip).limit(limit);
     const count = await Cartoons.countDocuments({ writer_id: writerId });
     return { cartoons, count, limit };
@@ -106,6 +105,19 @@ export const getAnonWriterInfo = async (nickname) => {
     return writerInfo;
   } catch (error) {
     throw new Error("failed to fetch anon writer");
+  }
+}
+
+export const getAnonWriterCartoons = async (nickname, page) => {
+  try {
+    await connectToDb();
+    const skip = (page - 1) * limit;
+    const cartoons = await Cartoons.find({ writer_id: "a", writer_nickname: nickname }).sort({ _id: -1 }).skip(skip).limit(limit);
+    const count = await Cartoons.countDocuments({ writer_id: "a", writer_nickname: nickname });
+    return { cartoons, count, limit };
+  } catch (error) {
+    console.log(error);
+    throw new Error("failed to fetch getWriterCartoons!");
   }
 }
 

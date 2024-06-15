@@ -1,0 +1,25 @@
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.infos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.container {
+  margin: auto;
+  width: 650px;
+}
+.cartoon {
+  flex: 1;
+}
+.title {
+  font-weight: bold;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
