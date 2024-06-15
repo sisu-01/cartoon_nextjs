@@ -19,7 +19,7 @@ const Anon = async ({ searchParams }) => {
   const { cartoons, count, limit } = await getAnonWriterCartoons(nickname, currentPage);
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <h1>{writer.nickname}</h1>
       </div>
@@ -35,7 +35,7 @@ const Anon = async ({ searchParams }) => {
         <span>평균 개추: {writer.average}</span>
       </div>
       <hr/>
-      <div className={styles.container}>
+      <div>
         {cartoons.map(cartoon => (
           <div key={cartoon.id} className={styles.cartoon}>
             <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">

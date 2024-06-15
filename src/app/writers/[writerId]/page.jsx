@@ -36,7 +36,7 @@ const WriterInfo = async ({ params, searchParams }) => {
  const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <h1>{writer.nickname_history[0].nickname}</h1>
         id: {writer.id}
@@ -73,7 +73,7 @@ const WriterInfo = async ({ params, searchParams }) => {
         <span>평균 개추: {writer.average}</span>
       </div>
       <hr/>
-      <div className={styles.container}>
+      <div>
         {cartoons.map(cartoon => (
           <div key={cartoon.id} className={styles.cartoon}>
             <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">

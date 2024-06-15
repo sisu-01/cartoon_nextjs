@@ -3,6 +3,7 @@ import Paging from "@/components/testPaging/paging";
 import { dateFormat } from "@/lib/common";
 import { getWriters } from "@/lib/data";
 import Link from "next/link";
+import styles from "./writers.module.css";
 
 export const metadata = {
   title: 'Writers',
@@ -17,7 +18,7 @@ const Writers = async ({ searchParams }) => {
   const { writers, count, limit } = await getWriters(currentPage, currentSort);
   
   return (
-    <div>
+    <div className={styles.container}>
       <table>
         <thead>
           <SortList sorting={currentSort} />
