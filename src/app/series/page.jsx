@@ -1,3 +1,5 @@
+import Cut from "@/components/cut/cut";
+import Sort from "@/components/sort/sort";
 import Paging from "@/components/testPaging/paging";
 import { isDateWithin14Days } from "@/lib/common";
 import { getSeries } from "@/lib/data";
@@ -9,24 +11,19 @@ export const metadata = {
 }
 
 const Series = async ({ searchParams }) => {
-  const { page } = searchParams;
+  const { page, sort, cut } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
+  const currentSort = sort === "rating" ? true : false;
+  const currentCut = (Number(cut) > 0 ? Number(cut) : 0);
   
-  const { series, count, limit } = await getSeries(currentPage);
-  /*
-  {
-  _id: new ObjectId('666028821cb0d276547c7a17'),
-  id: 687124,
-  title: 'ㅇㅎ) 남성향에선 행복할 수 없는 여마왕 -아라크네편',
-  writer_id: 'bongddu',
-  writer_nickname: '실짱님',
-  count: 2,
-  last_update: '2024-05-05 21:08:37',
-  average: 213
-  }
-   */
+  const { series, count, limit } = await getSeries(currentPage, currentSort, currentCut);
   return (
     <div>
+      <div>
+        <Sort checked={currentSort} />
+        <Cut checked={currentCut} />
+      </div>
+      <hr />
       {series.map((ser) => (
         <div key={ser.id}>
           <Link href={`/series/${ser.id}`}>
@@ -37,7 +34,7 @@ const Series = async ({ searchParams }) => {
           </Link>
         </div>
       ))}
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/series`} />
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
     </div>
   );
 }

@@ -25,7 +25,7 @@ const Cartoons = async ({ searchParams }) => {
   const { page, sort, cut } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const currentSort = sort === "rating" ? true : false;
-  const currentCut = (Number(cut) > 0 ? Number(cut) : 1);
+  const currentCut = (Number(cut) > 0 ? Number(cut) : 0);
   
   // API로 가져오기
   // const cartoons = await getCartoons();

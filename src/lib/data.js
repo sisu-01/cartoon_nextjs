@@ -9,13 +9,13 @@ export const getCartoons = async (page, sort, cut) => {
     let query = {};
     let sortQuery = {};
     
-    if (cut >= 1) {
-      query.recommend = { $gte: cut };
-    }
     if (sort) {
       sortQuery = { recommend: -1 };
     } else {
       sortQuery = { _id: -1 };
+    }
+    if (cut >= 1) {
+      query.recommend = { $gte: cut };
     }
 
     const skip = (page - 1) * limit;
@@ -121,13 +121,25 @@ export const getAnonWriterCartoons = async (nickname, page) => {
   }
 }
 
-export const getSeries = async (page) => {
-  const limit = 30;
+export const getSeries = async (page, sort, cut) => {
+  const limit = 36;
   try {
     await connectToDb();
+    let query = {};
+    let sortQuery = {};
+
+    if (sort) {
+      sortQuery = { average: -1 };
+    } else {
+      sortQuery = { last_update: -1 };
+    }
+    if (cut >= 1) {
+      query.average = { $gte: cut };
+    }
+    console.log(query);
     const skip = (page - 1) * limit;
-    const series = await Series.find().sort({ last_update: -1 }).skip(skip).limit(limit);
-    const count = await Series.countDocuments();
+    const series = await Series.find(query).sort(sortQuery).skip(skip).limit(limit);
+    const count = await Series.countDocuments(query);
     return { series, count, limit };
   } catch (error) {
     console.log(error);
