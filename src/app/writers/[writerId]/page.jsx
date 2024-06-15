@@ -31,29 +31,42 @@ const WriterInfo = async ({ params }) => {
 
   return (
     <div>
-      {writer.id}
-      {writer.nickname_history[0].nickname}
-      <table>
-        <thead>
-          <tr>
-            <th>nickname</th>
-            <th>since</th>
-          </tr>
-        </thead>
-        <tbody>
-          {writer.nickname_history.map((history) => (
-            <tr key={history._id}>
-              <td>{history.nickname}</td>
-              <td>{dateFormat(history.date)}</td>
+      <div>
+        <h1>{writer.nickname_history[0].nickname}</h1>
+        id: {writer.id}
+      </div>
+      <hr/>
+      <div>
+        <span><h3>닉네임 변경 기록</h3></span>
+        <table>
+          <thead>
+            <tr>
+              <th>nickname</th>
+              <th>since</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {dateFormat(writer.first_date)}
-      {dateFormat(writer.last_date)}
-      {writer.count}
-      {writer.recommend}
-      {writer.average}
+          </thead>
+          <tbody>
+            {writer.nickname_history.map((history) => (
+              <tr key={history._id}>
+                <td>{history.nickname}</td>
+                <td>{dateFormat(history.date)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <hr/>
+      <div className={styles.dates}>
+        <span>첫 념글: {dateFormat(writer.first_date)}</span>
+        <span>최근 활동일: {dateFormat(writer.last_date)}</span>
+      </div>
+      <hr/>
+      <div className={styles.infos}>
+        <span>만화 개수: {writer.count}</span>
+        <span>개추 총합: {writer.recommend}</span>
+        <span>평균 개추: {writer.average}</span>
+      </div>
+      <hr/>
       <CartoonList writerId={writerId} />
     </div>
   );

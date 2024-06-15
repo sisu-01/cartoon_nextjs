@@ -1,3 +1,14 @@
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.infos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .container {
   margin: auto;
   width: 650px;
