@@ -31,7 +31,7 @@ const Cut = ({checked}) => {
 
   const handler = (value) => {
     if (value === 0 || value < 0) {
-      router.push(`${pathName}?${delteQueryString}`);
+      router.push(`${pathName}?${delteQueryString()}`);
     } else {
       router.push(`${pathName}?${createQueryString(value)}`);
     }
