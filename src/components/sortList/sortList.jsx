@@ -31,8 +31,6 @@ const SortList = ({ sorting }) => {
   const pathName = usePathname();
   const searchParams = useSearchParams();
 
-  console.log(sorting);
-
   const createQueryString = useCallback(
     (value) => {
       const params = new URLSearchParams(searchParams.toString());

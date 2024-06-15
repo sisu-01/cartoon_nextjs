@@ -8,11 +8,9 @@
   flex-direction: column;
   gap: 5px;
 }
-
 .container {
   margin: auto;
   width: 650px;
-  background: yellow;
 }
 .cartoon {
   flex: 1;

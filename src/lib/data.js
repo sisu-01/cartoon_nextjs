@@ -34,14 +34,14 @@ export const getWriters = async (page, sort) => {
     let query = {};//검색
     let sortQuery = {};
     if (sort === undefined) {
-      sortQuery = { _id: 1 };
+      sortQuery = { _id: -1 };
     } else {
       switch(sort) {
         case "nickname":
           sortQuery = { nickname: 1 };
           break;
         case "date":
-          sortQuery = { first_date: 1 };
+          sortQuery = { _id: 1 };
           break;
         case "count":
           sortQuery = { count: -1 };
@@ -87,7 +87,7 @@ export const getWriterCartoons = async (writerId, page) => {
     await connectToDb();
     const skip = (page - 1) * limit;
     console.log(skip, limit);
-    const cartoons = await Cartoons.find({ writer_id: writerId }).sort({ _id: 1 }).skip(skip).limit(limit);
+    const cartoons = await Cartoons.find({ writer_id: writerId }).sort({ _id: -1 }).skip(skip).limit(limit);
     const count = await Cartoons.countDocuments({ writer_id: writerId });
     return { cartoons, count, limit };
   } catch (error) {
