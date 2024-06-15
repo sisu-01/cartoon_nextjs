@@ -32,14 +32,28 @@ export const getWriters = async (page) => {
 export const getWriterInfo = async (writerId) => {
   try {
     await connectToDb();
-    const writerInfo = await Writers.findOne({ id: writerId });
-    if (!writerInfo) {
-      throw new Error("WriterInfo not found");
+    const writer = await Writers.findOne({ id: writerId });
+    if (!writer) {
+      throw new Error("writer not found");
     }
-    return writerInfo;
+    return writer;
   } catch (error) {
     throw new Error("failed to fetch writer info");
     //수정 404 하는 방법
+  }
+}
+
+export const getWriterCartoons = async (writerId, page) => {
+  try {
+    await connectToDb();
+    const skip = (page - 1) * limit;
+    console.log(skip, limit);
+    const cartoons = await Cartoons.find({ writer_id: writerId }).sort({ _id: 1 }).skip(skip).limit(limit);
+    const count = await Cartoons.countDocuments({ writer_id: writerId });
+    return { cartoons, count, limit };
+  } catch (error) {
+    console.log(error);
+    throw new Error("failed to fetch getWriterCartoons!");
   }
 }
 

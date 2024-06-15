@@ -1,7 +1,7 @@
-import { dateFormat } from "@/lib/common";
-import { getWriterInfo } from "@/lib/data";
+import { dateFormat, isDateWithin14Days } from "@/lib/common";
+import { getWriterCartoons, getWriterInfo } from "@/lib/data";
 import styles from "./writerInfo.module.css";
-import CartoonsList from "@/components/cartoonsList/cartoonsList";
+import Paging from "@/components/testPaging/paging";
 
 export const generateMetadata = async ({params}) => {
   const { writerId } = params;
@@ -12,9 +12,10 @@ export const generateMetadata = async ({params}) => {
   };
 }
 
-const WriterInfo = async ({ params }) => {
+const WriterInfo = async ({ params, searchParams }) => {
   const { writerId } = params;
-
+  const { page } = searchParams;
+  const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getWriterInfo(writerId);
   /*
   _id: new ObjectId('665c7b1103272be39860dc31'),
@@ -32,6 +33,7 @@ const WriterInfo = async ({ params }) => {
   recommend: 50,
   average: 50
   */
+ const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
 
   return (
     <div>
@@ -71,7 +73,25 @@ const WriterInfo = async ({ params }) => {
         <span>평균 개추: {writer.average}</span>
       </div>
       <hr/>
-      <CartoonsList writerId={writerId} />
+      <div className={styles.container}>
+        {cartoons.map(cartoon => (
+          <div key={cartoon.id} className={styles.cartoon}>
+            <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
+              <div>
+                {isDateWithin14Days(cartoon.date) && (
+                  <span><b>UP</b></span>
+                )}
+                <span className={styles.title}>{cartoon.title}</span>
+                <div className={styles.info}>
+                  <span>{cartoon.recommend}</span>
+                  <span>{dateFormat(cartoon.date)}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+        <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/writers/${writerId}`} />
+      </div>
     </div>
   );
 }
