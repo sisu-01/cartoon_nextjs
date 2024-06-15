@@ -147,10 +147,10 @@ export const getSeries = async (page, sort, cut) => {
   }
 }
 
-export const getSeriesDetail = async (series_id) => {
+export const getSeriesInfo = async (series_id) => {
   try {
     await connectToDb();
-    const series = await Series.find({ id: series_id });
+    const series = await Series.findOne({ id: series_id });
     return series;
   } catch (error) {
     console.log(error);
