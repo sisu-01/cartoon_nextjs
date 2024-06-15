@@ -5,6 +5,7 @@ import styles from "./cartoons.module.css";
 import Link from "next/link";
 import Sort from "@/components/sort/sort";
 import Cut from "@/components/cut/cut";
+import RandomCartoon from "@/components/random/random";
 
 export const metadata = {
   title: 'Cartoons',
@@ -33,6 +34,7 @@ const Cartoons = async ({ searchParams }) => {
 
   return (
     <div className={styles.container}>
+      <RandomCartoon />
       <div>
         <Sort checked={currentSort} />
         <Cut checked={currentCut} />
