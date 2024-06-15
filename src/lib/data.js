@@ -28,12 +28,39 @@ export const getCartoons = async (page, sort, cut) => {
   }
 }
 
-export const getWriters = async (page) => {
+export const getWriters = async (page, sort) => {
   try {
     await connectToDb();
+    let query = {};//검색
+    let sortQuery = {};
+    if (sort === undefined) {
+      sortQuery = { _id: 1 };
+    } else {
+      switch(sort) {
+        case "nickname":
+          sortQuery = { nickname: 1 };
+          break;
+        case "date":
+          sortQuery = { first_date: 1 };
+          break;
+        case "count":
+          sortQuery = { count: -1 };
+          break;
+        case "recommend":
+          sortQuery = { recommend: -1 };
+          break;
+        case "average":
+          sortQuery = { average: -1 };
+          break;
+        default:
+          sortQuery = { _id: -1 };
+          break;
+      }
+    }
+
     const skip = (page - 1) * limit;
-    const writers = await Writers.find().skip(skip).limit(limit);
-    const count = await Writers.countDocuments();
+    const writers = await Writers.find(query).sort(sortQuery).skip(skip).limit(limit);
+    const count = await Writers.countDocuments(query);
     return { writers, count, limit };
   } catch (error) {
     console.log(error);

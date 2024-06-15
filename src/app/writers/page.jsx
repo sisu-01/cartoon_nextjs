@@ -1,3 +1,4 @@
+import SortList from "@/components/sortList/sortList";
 import Paging from "@/components/testPaging/paging";
 import { dateFormat } from "@/lib/common";
 import { getWriters } from "@/lib/data";
@@ -9,22 +10,17 @@ export const metadata = {
 }
 
 const Writers = async ({ searchParams }) => {
-  const { page } = searchParams;
+  const { page, sort } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
+  const currentSort = sort;
 
-  const { writers, count, limit } = await getWriters(currentPage);
+  const { writers, count, limit } = await getWriters(currentPage, currentSort);
   
   return (
     <div>
       <table>
         <thead>
-          <tr>
-            <th>가나다순</th>
-            <th>첫념글</th>
-            <th>작품수</th>
-            <th>노적개추</th>
-            <th>펴균개추</th>
-          </tr>
+          <SortList sorting={currentSort} />
         </thead>
         <tbody>
           {writers.map((writer) => (
