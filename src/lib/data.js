@@ -3,12 +3,24 @@ import { connectToDb } from "./utils";
 
 const limit = 10;
 
-export const getCartoons = async (page) => {
+export const getCartoons = async (page, sort, cut) => {
   try {
     await connectToDb();
+    let query = {};
+    let sortQuery = {};
+    
+    if (cut >= 1) {
+      query.recommend = { $gte: cut };
+    }
+    if (sort) {
+      sortQuery = { recommend: -1 };
+    } else {
+      sortQuery = { _id: -1 };
+    }
+
     const skip = (page - 1) * limit;
-    const cartoons = await Cartoons.find().sort({ _id: -1 }).skip(skip).limit(limit);
-    const count = await Cartoons.countDocuments();
+    const cartoons = await Cartoons.find(query).sort(sortQuery).skip(skip).limit(limit);
+    const count = await Cartoons.countDocuments(query);
     return { cartoons, count, limit };
   } catch (error) {
     console.log(error);

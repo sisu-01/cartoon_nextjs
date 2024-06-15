@@ -3,6 +3,7 @@ import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";
 import Link from "next/link";
+import Sort from "@/components/sort/sort";
 
 export const metadata = {
   title: 'Cartoons',
@@ -20,24 +21,21 @@ export const metadata = {
 // }
 
 const Cartoons = async ({ searchParams }) => {
-  const { page } = searchParams;
+  const { page, sort, cut } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
+  const currentSort = sort === "rating" ? true : false;
+  const currentCut = (Number(cut) > 0 ? Number(cut) : 1);
   
   // API로 가져오기
   // const cartoons = await getCartoons();
-  const { cartoons, count, limit } = await getCartoons(currentPage);
-  /*
-  _id: new ObjectId('665c7bc593ec7947de663e4c'),
-  id: 688414,
-  title: '한국인들의 이중성 만화',
-  date: 2024-05-19T12:30:12.000Z,
-  recommend: 91,
-  writer_object_id: new ObjectId('665c7b1203272be39860dc5c'),
-  writer_id: 'a',
-  writer_nickname: '카갤러'
-  */
+  const { cartoons, count, limit } = await getCartoons(currentPage, currentSort, currentCut);
+
   return (
     <div className={styles.container}>
+      <div>
+        <Sort checked={currentSort} />
+      </div>
+      <hr/>
       {cartoons.map((cartoon) => (
         <div className={styles.wrappers} key={cartoon.id}>
           <div className={styles.cartoon}>
@@ -64,7 +62,7 @@ const Cartoons = async ({ searchParams }) => {
           </div>
         </div>
       ))}
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/cartoons`} />
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
     </div>
   );
 }
