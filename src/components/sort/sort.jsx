@@ -9,9 +9,9 @@ const Sort = ({ checked }) => {
   const searchParams = useSearchParams();
 
   const createQueryString = useCallback(
-    (name, value) => {
+    (value) => {
       const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
+      params.set("sort", value);
       params.delete("page");
  
       return params.toString();
@@ -19,9 +19,9 @@ const Sort = ({ checked }) => {
     [searchParams]
   );
   const delteQueryString = useCallback(
-    (name) => {
+    () => {
       const params = new URLSearchParams(searchParams.toString());
-      params.delete(name);
+      params.delete("sort");
       params.delete("page");
  
       return params.toString();
@@ -31,9 +31,9 @@ const Sort = ({ checked }) => {
 
   const handle = () => {
     if (!checked) {
-      router.push(`${pathName}?${createQueryString("sort", "rating")}`);
+      router.push(`${pathName}?${createQueryString("rating")}`);
     } else {
-      router.push(`${pathName}?${delteQueryString("sort")}`);
+      router.push(`${pathName}?${delteQueryString()}`);
     }
   }
 

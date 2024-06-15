@@ -4,6 +4,7 @@ import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";
 import Link from "next/link";
 import Sort from "@/components/sort/sort";
+import Cut from "@/components/cut/cut";
 
 export const metadata = {
   title: 'Cartoons',
@@ -34,6 +35,7 @@ const Cartoons = async ({ searchParams }) => {
     <div className={styles.container}>
       <div>
         <Sort checked={currentSort} />
+        <Cut checked={currentCut} />
       </div>
       <hr/>
       {cartoons.map((cartoon) => (
