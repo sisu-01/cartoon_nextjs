@@ -3,9 +3,13 @@ import { getWriterInfo } from "@/lib/data";
 import styles from "./writerInfo.module.css";
 import CartoonsList from "@/components/cartoonsList/cartoonsList";
 
-export const metadata = {
-  title: 'Writer Info',
-  description: '작가 정보',
+export const generateMetadata = async ({params}) => {
+  const { writerId } = params;
+  const writer = await getWriterInfo(writerId);
+  return {
+    title: writer.nickname_history[0].nickname,
+    description: "슉 슈슉 시",
+  };
 }
 
 const WriterInfo = async ({ params }) => {
