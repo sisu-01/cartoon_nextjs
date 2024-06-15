@@ -136,7 +136,6 @@ export const getSeries = async (page, sort, cut) => {
     if (cut >= 1) {
       query.average = { $gte: cut };
     }
-    console.log(query);
     const skip = (page - 1) * limit;
     const series = await Series.find(query).sort(sortQuery).skip(skip).limit(limit);
     const count = await Series.countDocuments(query);
