@@ -31,11 +31,25 @@ const Cut = ({checked}) => {
     [searchParams]
   )
 
-  const handler = (value) => {
-    if (value === 0 || value < 0) {
-      router.push(`${pathName}?${delteQueryString()}`);
+  const handler = (e) => {
+    const { value } = e.target;
+    if (value === "etc") {
+      const userInput = prompt("추천컷을 숫자로 입력해주세요.");
+      if (userInput !== null) {
+        if (isNaN(userInput) || userInput === "") {
+          alert("숫자만 입력해주세요.");
+        } else {
+          router.push(`${pathName}?${createQueryString(userInput)}`);
+        }
+      }
     } else {
-      router.push(`${pathName}?${createQueryString(value)}`);
+      const cut = Number(value);
+      console.log(cut);
+      if (cut === 0 || cut < 0) {
+        router.push(`${pathName}?${delteQueryString()}`);
+      } else {
+        router.push(`${pathName}?${createQueryString(cut)}`);
+      }
     }
   }
 
@@ -50,6 +64,9 @@ const Cut = ({checked}) => {
             {option}
           </option>
         ))}
+        <option value="etc">
+          기타
+        </option>
       </select>
       <span className='input-group-text'>최소 개추 수</span>
     </div>
