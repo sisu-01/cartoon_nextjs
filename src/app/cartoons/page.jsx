@@ -24,10 +24,11 @@ export const metadata = {
 // }
 
 const Cartoons = async ({ searchParams }) => {
-  const { page, sort, cut } = searchParams;
+  const { page, sort, cut, keyword } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const currentSort = sort === "rating" ? true : false;
   const currentCut = (Number(cut) > 0 ? Number(cut) : 0);
+  const currentKeyword = keyword;
   
   // API로 가져오기
   // const cartoons = await getCartoons();
@@ -68,7 +69,7 @@ const Cartoons = async ({ searchParams }) => {
         </div>
       ))}
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
-      <Search />
+      <Search keyword={currentKeyword} />
     </div>
   );
 }
