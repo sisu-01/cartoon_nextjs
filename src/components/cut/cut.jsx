@@ -44,7 +44,6 @@ const Cut = ({checked}) => {
       }
     } else {
       const cut = Number(value);
-      console.log(cut);
       if (cut === 0 || cut < 0) {
         router.push(`${pathName}?${delteQueryString()}`);
       } else {
