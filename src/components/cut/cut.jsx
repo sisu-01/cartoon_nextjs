@@ -7,6 +7,8 @@ const Cut = ({checked}) => {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
+
+  const options = [0, 50, 100, 250, 500, 1000];
   
   const createQueryString = useCallback(
     (value) => {
@@ -39,18 +41,15 @@ const Cut = ({checked}) => {
 
   return (
     <div>
-      <select
-        onChange={(
-          {target: {value}}) => handler(Number(value)
+      <select onChange={handler} value={checked}>
+        {options.includes(checked) ? null : (
+          <option value={checked}>{checked}</option>
         )}
-        value={checked}
-      >
-        <option value={0}>0</option>
-        <option value={50}>50</option>
-        <option value={100}>100</option>
-        <option value={250}>250</option>
-        <option value={500}>500</option>
-        <option value={1000}>1000</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </select>
       <span className='input-group-text'>최소 개추 수</span>
     </div>
