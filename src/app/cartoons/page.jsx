@@ -6,6 +6,7 @@ import Link from "next/link";
 import Sort from "@/components/sort/sort";
 import Cut from "@/components/cut/cut";
 import RandomCartoon from "@/components/random/random";
+import Search from "@/components/search/search";
 
 export const metadata = {
   title: 'Cartoons',
@@ -67,6 +68,7 @@ const Cartoons = async ({ searchParams }) => {
         </div>
       ))}
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
+      <Search />
     </div>
   );
 }
