@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import styles from "./paging.module.css";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback } from 'react';
-import styles from "./paging.module.css";
 
 /**
  * @param {Number} page 현재 페이지
@@ -40,21 +40,21 @@ const Paging = ({page, perPage, count, pageBtn, onClick}) => {
       newArr.push(<div className={styles.link} key='first' onClick={() => onClick(1)}>first</div>);
       newArr.push(<div className={styles.link} key='prev' onClick={() => onClick(startPage - 1)}>prev</div>);
     } else {
-      newArr.push(<Link key='first' href={`${pathName}?${createQueryString(1)}`} className={styles.link}>first</Link>);
-      newArr.push(<Link key='prev' href={`${pathName}?${createQueryString(startPage - 1)}`} className={styles.link}>prev</Link>);
+      newArr.push(<Link key='first' href={`${pathName}?${createQueryString(1)}`}>first</Link>);
+      newArr.push(<Link key='prev' href={`${pathName}?${createQueryString(startPage - 1)}`}>prev</Link>);
     }
   } else {
-    newArr.push(<div className={`${styles.disabled} ${styles.link}`} key='_first'>first</div>);
-    newArr.push(<div className={`${styles.disabled} ${styles.link}`} key='_prev'>prev</div>);
+    newArr.push(<div key='_first'>first</div>);
+    newArr.push(<div key='_prev'>prev</div>);
   }
   for (let i = startPage; i <= endPage; i++) {
     if (page === i) {
-      newArr.push(<div key={i} className={`${styles.active} ${styles.link}`}>{i}</div>);
+      newArr.push(<div key={i}>{i}</div>);
     } else {
       if (onClick) {
         newArr.push(<div key={i} className={styles.link} onClick={() => onClick(i)}>{i}</div>);
       } else {
-        newArr.push(<Link key={i} href={`${pathName}?${createQueryString(i)}`} className={styles.link}>{i}</Link>);
+        newArr.push(<Link key={i} href={`${pathName}?${createQueryString(i)}`}>{i}</Link>);
       }
     }
   }
@@ -63,12 +63,12 @@ const Paging = ({page, perPage, count, pageBtn, onClick}) => {
       newArr.push(<div className={styles.link} key='next' onClick={() => onClick(endPage + 1)}>next</div>);
       newArr.push(<div className={styles.link} key='last' onClick={() => onClick(totalPage)}>last</div>);
     } else {
-      newArr.push(<Link key='next' href={`${pathName}?${createQueryString(endPage + 1)}`} className={styles.link}>next</Link>);
-      newArr.push(<Link key='last' href={`${pathName}?${createQueryString(totalPage)}`} className={styles.link}>last</Link>);
+      newArr.push(<Link key='next' href={`${pathName}?${createQueryString(endPage + 1)}`}>next</Link>);
+      newArr.push(<Link key='last' href={`${pathName}?${createQueryString(totalPage)}`}>last</Link>);
     }
   } else {
-    newArr.push(<div key='_next' className={`${styles.disabled} ${styles.link}`}>next</div>);
-    newArr.push(<div key='_last' className={`${styles.disabled} ${styles.link}`}>last</div>);
+    newArr.push(<div key='_next'>next</div>);
+    newArr.push(<div key='_last'>last</div>);
   }
   return (
     <div className={styles.container}>{newArr}</div>

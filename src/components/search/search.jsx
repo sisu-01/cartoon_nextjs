@@ -63,14 +63,14 @@ const Search = ({ keyword }) => {
     <div className={styles.container}>
       <input
         type="text"
+        name=""
+        id=""
         value={tempText}
         onChange={(e) => setTempText(e.target.value)}
         onKeyDown={() => clearTime()}
         onKeyUp={() => setTime()}
-        className={styles.input}
-        placeholder="작가 검색..."
       />
-      <button onClick={() => resetKeyword()} className={styles.resetButton}>X</button>
+      <button onClick={() => resetKeyword()}>X</button>
     </div>
   );
 }

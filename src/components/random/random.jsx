@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import styles from "./random.module.css";
 
 const RandomCartoon = () => {
   const [error, setError] = useState(null);
@@ -21,9 +20,9 @@ const RandomCartoon = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <button onClick={handler} className={styles.button}>🔀랜덤 만화 보기</button>
-      {error && <p className={styles.error}>{error}</p>}
+    <div>
+      <button onClick={handler}>🔀랜덤 만화 보기</button>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }
