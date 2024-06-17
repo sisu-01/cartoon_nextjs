@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react';
+import styles from "./cut.module.css";
 
 const Cut = ({checked}) => {
   const router = useRouter();
@@ -53,8 +54,8 @@ const Cut = ({checked}) => {
   }
 
   return (
-    <div>
-      <select onChange={handler} value={checked}>
+    <div className={styles.container}>
+      <select onChange={handler} value={checked} className={styles.select}>
         {options.includes(checked) ? null : (
           <option value={checked}>{checked}</option>
         )}
@@ -67,7 +68,7 @@ const Cut = ({checked}) => {
           기타
         </option>
       </select>
-      <span className='input-group-text'>최소 개추 수</span>
+      <span className={styles.label}>최소 개추 수</span>
     </div>
   );
 }
