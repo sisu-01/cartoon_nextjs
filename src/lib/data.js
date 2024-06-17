@@ -32,7 +32,7 @@ export const getCartoons = async (page, sort, cut, keyword) => {
   }
 }
 
-export const getWriters = async (page, sort) => {
+export const getWriters = async (page, sort, keyword) => {
   try {
     await connectToDb();
     let query = {};//검색
@@ -60,6 +60,9 @@ export const getWriters = async (page, sort) => {
           sortQuery = { _id: -1 };
           break;
       }
+    }
+    if (keyword) {
+      query.nickname = { $regex: keyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
     }
 
     const skip = (page - 1) * limit;

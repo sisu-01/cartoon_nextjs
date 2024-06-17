@@ -4,6 +4,7 @@ import { dateFormat } from "@/lib/common";
 import { getWriters } from "@/lib/data";
 import Link from "next/link";
 import styles from "./writers.module.css";
+import Search from "@/components/search/search";
 
 export const metadata = {
   title: 'Writers',
@@ -11,11 +12,12 @@ export const metadata = {
 }
 
 const Writers = async ({ searchParams }) => {
-  const { page, sort } = searchParams;
+  const { page, sort, keyword } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const currentSort = sort;
+  const currentKeyword = keyword ? keyword : false;
 
-  const { writers, count, limit } = await getWriters(currentPage, currentSort);
+  const { writers, count, limit } = await getWriters(currentPage, currentSort, currentKeyword);
   
   return (
     <div className={styles.container}>
@@ -44,6 +46,7 @@ const Writers = async ({ searchParams }) => {
         </tbody>
       </table>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/writers`} />
+      <Search keyword={currentKeyword}/>
     </div>
   );
 }
