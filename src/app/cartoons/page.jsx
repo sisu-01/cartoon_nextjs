@@ -28,11 +28,11 @@ const Cartoons = async ({ searchParams }) => {
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const currentSort = sort === "rating" ? true : false;
   const currentCut = (Number(cut) > 0 ? Number(cut) : 0);
-  const currentKeyword = keyword;
+  const currentKeyword = keyword ? keyword : false;
   
   // API로 가져오기
   // const cartoons = await getCartoons();
-  const { cartoons, count, limit } = await getCartoons(currentPage, currentSort, currentCut);
+  const { cartoons, count, limit } = await getCartoons(currentPage, currentSort, currentCut, currentKeyword);
 
   return (
     <div className={styles.container}>

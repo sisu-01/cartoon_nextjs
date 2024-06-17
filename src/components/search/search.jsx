@@ -10,7 +10,6 @@ const Search = ({ keyword }) => {
   const searchParams = useSearchParams();
 
   const [tempText, setTempText] = useState(keyword || "");
-  console.log("keyword",keyword,"tempText",tempText);
 
   //작가 검색 시간 체크
   let searchTimer;

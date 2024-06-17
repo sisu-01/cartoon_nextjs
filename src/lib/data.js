@@ -3,7 +3,7 @@ import { connectToDb } from "./utils";
 
 const limit = 10;
 
-export const getCartoons = async (page, sort, cut) => {
+export const getCartoons = async (page, sort, cut, keyword) => {
   try {
     await connectToDb();
     let query = {};
@@ -16,6 +16,10 @@ export const getCartoons = async (page, sort, cut) => {
     }
     if (cut >= 1) {
       query.recommend = { $gte: cut };
+    }
+
+    if (keyword) {
+      query.title = { $regex: keyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
     }
 
     const skip = (page - 1) * limit;
