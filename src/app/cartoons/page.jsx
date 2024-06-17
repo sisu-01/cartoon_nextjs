@@ -42,32 +42,39 @@ const Cartoons = async ({ searchParams }) => {
         <Cut checked={currentCut} />
       </div>
       <hr/>
-      {cartoons.map((cartoon) => (
-        <div className={styles.wrappers} key={cartoon.id}>
-          <div className={styles.cartoon}>
+      <ul>
+        {cartoons.map((cartoon) => (
+          <li className={styles.wrappers} key={cartoon.id}>
             <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
-              <div>
-                {isDateWithin14Days(cartoon.date) && (
-                  <span><b>UP</b></span>
-                )}
-                <span className={styles.title}>{cartoon.title}</span>
-                <div className={styles.info}>
-                  <span>{cartoon.recommend}</span>
-                  <span>{dateFormat(cartoon.date)}</span>
+              <div className={styles.thunbnail}>
+                <div className={styles.imageBox}>
+                  <img className={styles.thumbnailImg} src={cartoon.og_image} />
                 </div>
               </div>
+              <div className={styles.cartoon}>
+                  <div>
+                    <span className={styles.title}>{cartoon.title}</span>
+                    {isDateWithin14Days(cartoon.date) && (
+                      <span><b>UP</b></span>
+                    )}
+                    <div className={styles.info}>
+                      <span>{cartoon.recommend}</span>
+                      <span>{dateFormat(cartoon.date)}</span>
+                    </div>
+                  </div>
+              </div>
             </a>
-          </div>
-          <div className={styles.writer}>
-            {cartoon.writer_id === "a"? (
-              <Link href={`/writers/anon?nickname=${cartoon.writer_nickname}`}>{cartoon.writer_nickname}</Link>
-            ) : (
-              <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
-            )}
-            
-          </div>
-        </div>
-      ))}
+            <div className={styles.writer}>
+              {cartoon.writer_id === "a"? (
+                <Link href={`/writers/anon?nickname=${cartoon.writer_nickname}`}>{cartoon.writer_nickname}</Link>
+              ) : (
+                <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
+              )}
+              
+            </div>
+          </li>
+        ))}
+      </ul>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
       <Search keyword={currentKeyword} />
     </div>
