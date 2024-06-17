@@ -128,7 +128,7 @@ export const getAnonWriterCartoons = async (nickname, page) => {
   }
 }
 
-export const getSeries = async (page, sort, cut) => {
+export const getSeries = async (page, sort, cut, keyword) => {
   const limit = 36;
   try {
     await connectToDb();
@@ -143,6 +143,10 @@ export const getSeries = async (page, sort, cut) => {
     if (cut >= 1) {
       query.average = { $gte: cut };
     }
+    if (keyword) {
+      query.title = { $regex: keyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
+    }
+
     const skip = (page - 1) * limit;
     const series = await Series.find(query).sort(sortQuery).skip(skip).limit(limit);
     const count = await Series.countDocuments(query);

@@ -1,4 +1,5 @@
 import Cut from "@/components/cut/cut";
+import Search from "@/components/search/search";
 import Sort from "@/components/sort/sort";
 import Paging from "@/components/testPaging/paging";
 import { isDateWithin14Days } from "@/lib/common";
@@ -11,12 +12,13 @@ export const metadata = {
 }
 
 const Series = async ({ searchParams }) => {
-  const { page, sort, cut } = searchParams;
+  const { page, sort, cut, keyword } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const currentSort = sort === "rating" ? true : false;
   const currentCut = (Number(cut) > 0 ? Number(cut) : 0);
+  const currentKeyword = keyword ? keyword : false;
   
-  const { series, count, limit } = await getSeries(currentPage, currentSort, currentCut);
+  const { series, count, limit } = await getSeries(currentPage, currentSort, currentCut, currentKeyword);
   return (
     <div>
       <div>
@@ -35,6 +37,7 @@ const Series = async ({ searchParams }) => {
         </div>
       ))}
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
+      <Search keyword={currentKeyword} />
     </div>
   );
 }
