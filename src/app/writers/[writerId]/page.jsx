@@ -7,7 +7,7 @@ export const generateMetadata = async ({params}) => {
   const { writerId } = params;
   const writer = await getWriterInfo(writerId);
   return {
-    title: writer.nickname_history[0].nickname,
+    title: writer.nickname,
     description: "슉 슈슉 시",
   };
 }
@@ -38,7 +38,7 @@ const WriterInfo = async ({ params, searchParams }) => {
   return (
     <div className={styles.container}>
       <div>
-        <h1>{writer.nickname_history[0].nickname}</h1>
+        <h1>{writer.nickname}</h1>
         id: {writer.id}
       </div>
       <hr/>

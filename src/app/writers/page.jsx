@@ -33,7 +33,7 @@ const Writers = async ({ searchParams }) => {
                   <Link href={`/writers/anon?nickname=${writer.nickname}`}>{writer.nickname}</Link>
                 ) : (
                   <span>
-                    <Link href={`/writers/${writer.id}`}>{writer.nickname_history[0].nickname}</Link>💛
+                    <Link href={`/writers/${writer.id}`}>{writer.nickname}💛</Link>
                   </span>
                 )}
               </td>
