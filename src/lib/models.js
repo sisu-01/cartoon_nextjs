@@ -8,7 +8,7 @@ const cartoonsSchema = new mongoose.Schema({
   writer_object_id: mongoose.ObjectId,
   writer_id: String,
   writer_nickname: String,
-  series_id: Number
+  og_image: String,
 });
 
 const nicknameHistorySchema = new mongoose.Schema({
