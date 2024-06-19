@@ -21,6 +21,7 @@ const Writers = async ({ searchParams }) => {
   
   return (
     <div className={styles.container}>
+      <span>✅: 고닉입니다.</span>
       <table className={styles.table}>
         <thead>
           <SortList sorting={currentSort} />
@@ -33,7 +34,7 @@ const Writers = async ({ searchParams }) => {
                   <Link href={`/writers/anon?nickname=${writer.nickname}`}>{writer.nickname}</Link>
                 ) : (
                   <span>
-                    <Link href={`/writers/${writer.id}`}>{writer.nickname}💛</Link>
+                    <Link href={`/writers/${writer.id}`}>{writer.nickname}✅</Link>
                   </span>
                 )}
               </td>

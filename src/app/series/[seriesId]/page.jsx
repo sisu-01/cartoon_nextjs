@@ -35,7 +35,7 @@ const SeriesPage = async ({ params, searchParams }) => {
       <div>
         <h1>{series.title}</h1>
         <h2>
-          <Link href={createWriterUrl()}>{series.writer_nickname}{series.writer_id !== "a" && "💛"}</Link>
+          <Link href={createWriterUrl()}>{series.writer_nickname}</Link>
         </h2>
         <span>작가 이름을 눌러 상세 페이지도 확인해보세요</span>
       </div>
