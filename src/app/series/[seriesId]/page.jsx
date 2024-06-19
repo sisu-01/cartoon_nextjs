@@ -9,7 +9,7 @@ export const generateMetadata = async ({params}) => {
   const series = await getSeriesInfo(seriesId);
   return {
     title: series.title,
-    description: "슉 슈슉 시",
+    description: "시리즈 페이지~",
   };
 }
 

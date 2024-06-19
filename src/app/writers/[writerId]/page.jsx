@@ -8,7 +8,7 @@ export const generateMetadata = async ({params}) => {
   const writer = await getWriterInfo(writerId);
   return {
     title: writer.nickname,
-    description: "슉 슈슉 시",
+    description: "작가 상세 페이지지롱",
   };
 }
 

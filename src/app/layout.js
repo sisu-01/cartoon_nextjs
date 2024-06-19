@@ -10,7 +10,7 @@ export const metadata = {
     default: "이름미정 메인",
     template: "%s | 이름미정"
   },
-  description: '이름미정입니다.',
+  description: '테스트중입니다.',
 }
 
 export default function RootLayout({ children }) {
