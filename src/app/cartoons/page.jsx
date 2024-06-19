@@ -1,5 +1,5 @@
 import Paging from "@/components/testPaging/paging";
-import { dateFormat, isDateWithin14Days } from "@/lib/common";
+import { dateFormat, highlightSearchText, isDateWithin14Days } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";
 import Link from "next/link";
@@ -29,10 +29,45 @@ const Cartoons = async ({ searchParams }) => {
   const currentSort = sort === "rating" ? true : false;
   const currentCut = (Number(cut) > 0 ? Number(cut) : 0);
   const currentKeyword = keyword ? keyword : false;
-  
   // API로 가져오기
   // const cartoons = await getCartoons();
   const { cartoons, count, limit } = await getCartoons(currentPage, currentSort, currentCut, currentKeyword);
+
+  const render = () => {
+    return cartoons.map((cartoon) => (
+      <li className={styles.wrappers} key={cartoon.id}>
+        <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
+          <div className={styles.thunbnail}>
+            <div className={styles.imageBox}>
+              <img className={styles.thumbnailImg} src={cartoon.og_image} />
+            </div>
+          </div>
+          <div className={styles.cartoon}>
+              <div>
+                <span className={styles.title}
+                  dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, keyword) }}>
+                </span>
+                {isDateWithin14Days(cartoon.date) && (
+                  <span><b>UP</b></span>
+                )}
+                <div className={styles.info}>
+                  <span>{cartoon.recommend}</span>
+                  <span>{dateFormat(cartoon.date)}</span>
+                </div>
+              </div>
+          </div>
+        </a>
+        <div className={styles.writer}>
+          {cartoon.writer_id === "a"? (
+            <Link href={`/writers/anon?nickname=${cartoon.writer_nickname}`}>{cartoon.writer_nickname}</Link>
+          ) : (
+            <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
+          )}
+          
+        </div>
+      </li>
+    ));
+  }
 
   return (
     <div className={styles.container}>
@@ -43,37 +78,7 @@ const Cartoons = async ({ searchParams }) => {
       </div>
       <hr/>
       <ul>
-        {cartoons.map((cartoon) => (
-          <li className={styles.wrappers} key={cartoon.id}>
-            <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
-              <div className={styles.thunbnail}>
-                <div className={styles.imageBox}>
-                  <img className={styles.thumbnailImg} src={cartoon.og_image} />
-                </div>
-              </div>
-              <div className={styles.cartoon}>
-                  <div>
-                    <span className={styles.title}>{cartoon.title}</span>
-                    {isDateWithin14Days(cartoon.date) && (
-                      <span><b>UP</b></span>
-                    )}
-                    <div className={styles.info}>
-                      <span>{cartoon.recommend}</span>
-                      <span>{dateFormat(cartoon.date)}</span>
-                    </div>
-                  </div>
-              </div>
-            </a>
-            <div className={styles.writer}>
-              {cartoon.writer_id === "a"? (
-                <Link href={`/writers/anon?nickname=${cartoon.writer_nickname}`}>{cartoon.writer_nickname}</Link>
-              ) : (
-                <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
-              )}
-              
-            </div>
-          </li>
-        ))}
+        {render()}
       </ul>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       <Search keyword={currentKeyword} />

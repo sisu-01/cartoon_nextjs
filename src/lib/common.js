@@ -50,6 +50,15 @@ export function isDateWithin14Days(date) {
   return daysDiff >= -14;
 }
 
+/**
+ * 검색어 빤짞빤짞
+ * @param {String} text 원본 텍스트
+ * @param {String} searchText 검색어
+ * @returns {String} span 들어간 텍스트
+ */
 export function highlightSearchText(text, searchText) {
+  if (!searchText) {
+    return text;
+  }
   return text.replace(new RegExp(searchText, 'g'), `<span class='highlight-text'>${searchText}</span>`);
 }

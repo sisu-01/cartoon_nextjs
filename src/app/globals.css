@@ -41,6 +41,11 @@ body {
   color: inherit;
 } */
 
+.highlight-text {
+  background-color: #ff0;
+  font-weight: 700;
+}
+
 .container {
   width: 1536px;
   margin: auto;
