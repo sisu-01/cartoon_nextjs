@@ -3,6 +3,20 @@ import { connectToDb } from "./utils";
 
 const limit = 10;
 
+export const getApi = async (writerId) => {
+  try {
+    await connectToDb();
+    const cartoons = await Cartoons.find(
+      { writer_id: writerId },
+      { _id: false, id: true, title: true}
+    ).sort({_id: 1});
+    return cartoons;
+  } catch (error) {
+    console.log(error);
+    throw new Error("failed to fetch getWriterCartoons!");
+  }
+}
+
 export const getCartoons = async (page, sort, cut, keyword) => {
   try {
     await connectToDb();

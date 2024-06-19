@@ -1,5 +1,5 @@
 import { dateFormat, isDateWithin14Days } from "@/lib/common";
-import { getWriterCartoons, getWriterInfo } from "@/lib/data";
+import { getApi, getWriterCartoons, getWriterInfo } from "@/lib/data";
 import styles from "./writerInfo.module.css";
 import Paging from "@/components/testPaging/paging";
 
@@ -34,9 +34,18 @@ const WriterInfo = async ({ params, searchParams }) => {
   average: 50
   */
  const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
+ const test = await getApi(writerId);
 
   return (
     <div className={styles.container}>
+      {/* <div>
+        [{test.map((te, index) => (
+          <div key={te.id}>
+            &#123;"id":&nbsp;"{te.id}",&nbsp;"title":&nbsp;"{te.title}"&#125;
+            {index < test.length - 1 ? ',' : ''}
+          </div>
+        ))}]
+      </div> */}
       <div>
         <h1>{writer.nickname}</h1>
         id: {writer.id}
