@@ -6,12 +6,12 @@ import Footer from "@/components/footer/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  metadataBase: new URL("https://${process.env.VERCEL_URL}");
   title: {
     default: "이름미정 메인",
     template: "%s | 이름미정"
   },
   description: '테스트중입니다.',
+  metadataBase: new URL("https://${process.env.VERCEL_URL}"),
 }
 
 export default function RootLayout({ children }) {
