@@ -20,7 +20,9 @@ export default function RootLayout({ children }) {
       <meta name='viewport' content='width=device-width, intial-scale=1.0' />
       <body className={inter.className}>
         <Navbar />
-        {children}
+        <main className="container">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
