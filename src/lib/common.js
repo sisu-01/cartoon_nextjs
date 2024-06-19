@@ -4,7 +4,7 @@
  * @param {String} type default, short
  * @returns {String} 예쁜 날짜
  */
-export function dateFormat(date, type='default'){
+export const dateFormat = (date, type='default') => {
   let d;
   if (typeof date === 'string') {
     d = new Date(date);
@@ -38,7 +38,7 @@ export function dateFormat(date, type='default'){
  * @param {String} date 날짜 형식의 문자열
  * @returns {Boolean} 현재 날짜로부터 15일 이내면 true, 아니면 false
  */
-export function isDateWithin14Days(date) {
+export const isDateWithin14Days = (date) => {
   const cartoonDate = new Date(date);
   cartoonDate.setHours(0, 0, 0, 0);
   
@@ -50,15 +50,22 @@ export function isDateWithin14Days(date) {
   return daysDiff >= -14;
 }
 
+export const escapeRegex = (string)  => {
+  // 정규 표현식에서 특수한 의미를 가지는 모든 문자를 이스케이프 처리
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $&는 매치된 전체 문자열을 의미
+}
+
 /**
- * 검색어 빤짞빤짞
+ * 검색어 강조 표시
  * @param {String} text 원본 텍스트
  * @param {String} searchText 검색어
  * @returns {String} span 들어간 텍스트
  */
-export function highlightSearchText(text, searchText) {
+export const highlightSearchText = (text, searchText) => {
   if (!searchText) {
     return text;
   }
-  return text.replace(new RegExp(searchText, 'g'), `<span class='highlight-text'>${searchText}</span>`);
+  const escapedSearchText = escapeRegex(searchText);
+  const regex = new RegExp(escapedSearchText, 'gi'); // 'gi' 플래그로 대소문자 구분 없이 전역 검색
+  return text.replace(regex, `<span class='highlight-text'>${searchText}</span>`);
 }

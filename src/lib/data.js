@@ -1,3 +1,4 @@
+import { escapeRegex } from "./common";
 import { Cartoons, Writers, Series } from "./models";
 import { connectToDb } from "./utils";
 
@@ -33,7 +34,8 @@ export const getCartoons = async (page, sort, cut, keyword) => {
     }
 
     if (keyword) {
-      query.title = { $regex: keyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
+      const escapedKeyword = escapeRegex(keyword);
+      query.title = { $regex: escapedKeyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
     }
 
     const skip = (page - 1) * limit;
@@ -76,7 +78,8 @@ export const getWriters = async (page, sort, keyword) => {
       }
     }
     if (keyword) {
-      query.nickname = { $regex: keyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
+      const escapedKeyword = escapeRegex(keyword);
+      query.nickname = { $regex: escapedKeyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
     }
 
     const skip = (page - 1) * limit;
@@ -158,7 +161,8 @@ export const getSeries = async (page, sort, cut, keyword) => {
       query.average = { $gte: cut };
     }
     if (keyword) {
-      query.title = { $regex: keyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
+      const escapedKeyword = escapeRegex(keyword);
+      query.title = { $regex: escapedKeyword, $options: 'i' };  // 'i' 옵션은 대소문자 구분 없이 검색하기 위해 사용
     }
 
     const skip = (page - 1) * limit;

@@ -32,6 +32,7 @@ const Cartoons = async ({ searchParams }) => {
   // API로 가져오기
   // const cartoons = await getCartoons();
   const { cartoons, count, limit } = await getCartoons(currentPage, currentSort, currentCut, currentKeyword);
+  console.log(currentKeyword);
 
   const render = () => {
     return cartoons.map((cartoon) => (
@@ -45,7 +46,9 @@ const Cartoons = async ({ searchParams }) => {
           <div className={styles.cartoon}>
               <div>
                 <span className={styles.title}
-                  dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, keyword) }}>
+                  dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, currentKeyword) }}
+                >
+                  {/* {cartoon.title} */}
                 </span>
                 {isDateWithin14Days(cartoon.date) && (
                   <span><b>UP</b></span>
