@@ -11,7 +11,7 @@ export const metadata = {
     template: "%s | 이름미정"
   },
   description: '테스트중입니다.',
-  metadataBase: new URL("https://${process.env.VERCEL_URL}"),
+  metadataBase: new URL(`https://${process.env.VERCEL_URL}`),
 }
 
 export default function RootLayout({ children }) {
