@@ -6,6 +6,7 @@ import Footer from "@/components/footer/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL("https://${process.env.VERCEL_URL}");
   title: {
     default: "이름미정 메인",
     template: "%s | 이름미정"
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <meta charSet="utf-8" />
       <meta name='viewport' content='width=device-width, intial-scale=1.0' />
-      <meta property="og:image" content="<generated>" />
+      {/* <meta property="og:image" content="<generated>" /> */}
       <body className={inter.className}>
         <Navbar />
         <main className="container">
