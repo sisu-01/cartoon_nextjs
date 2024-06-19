@@ -21,7 +21,7 @@ const Writers = async ({ searchParams }) => {
   
   return (
     <div className={styles.container}>
-      <table>
+      <table className={styles.table}>
         <thead>
           <SortList sorting={currentSort} />
         </thead>
@@ -45,7 +45,7 @@ const Writers = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/writers`} />
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       <Search keyword={currentKeyword}/>
     </div>
   );

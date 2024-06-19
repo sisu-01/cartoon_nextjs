@@ -17,6 +17,14 @@ ul, ol {
   list-style: none;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 3px;
+}
+
 * {
   margin: 0;
   padding: 0;

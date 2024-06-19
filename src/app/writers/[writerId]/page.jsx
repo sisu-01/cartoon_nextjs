@@ -99,7 +99,7 @@ const WriterInfo = async ({ params, searchParams }) => {
             </a>
           </div>
         ))}
-        <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
+        <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import Paging from "@/components/testPaging/paging";
 import { isDateWithin14Days } from "@/lib/common";
 import { getSeries } from "@/lib/data";
 import Link from "next/link";
+import styles from "./series.module.css";
 
 export const metadata = {
   title: "Series",
@@ -20,7 +21,7 @@ const Series = async ({ searchParams }) => {
   
   const { series, count, limit } = await getSeries(currentPage, currentSort, currentCut, currentKeyword);
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <Sort checked={currentSort} />
         <Cut checked={currentCut} />
@@ -36,7 +37,7 @@ const Series = async ({ searchParams }) => {
           </Link>
         </div>
       ))}
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       <Search keyword={currentKeyword} />
     </div>
   );

@@ -1,6 +1,6 @@
 .container {
   margin: auto;
-  width: 650px;
+  max-width: 800px;
 }
 .wrappers {
   display: flex;

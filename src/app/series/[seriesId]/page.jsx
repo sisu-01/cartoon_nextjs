@@ -59,7 +59,7 @@ const SeriesPage = async ({ params, searchParams }) => {
             </div>
           </div>
         ))}
-        <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} pathName={`/series/${seriesId}`} />
+        <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       </div>
     </div>
   );

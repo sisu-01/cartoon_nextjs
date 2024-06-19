@@ -75,7 +75,7 @@ const Cartoons = async ({ searchParams }) => {
           </li>
         ))}
       </ul>
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       <Search keyword={currentKeyword} />
     </div>
   );
