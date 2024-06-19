@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <meta charSet="utf-8" />
       <meta name='viewport' content='width=device-width, intial-scale=1.0' />
+      <meta property="og:image" content="<generated>" />
       <body className={inter.className}>
         <Navbar />
         <main className="container">
