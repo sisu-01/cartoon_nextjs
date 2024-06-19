@@ -6,10 +6,19 @@ import Link from "next/link";
 
 export const generateMetadata = async ({params}) => {
   const { seriesId } = params;
-  const series = await getSeriesInfo(seriesId);
+  const { series, cartoon } = await getSeriesInfo(seriesId);
   return {
-    title: series.title,
+    title: {
+      absolute: series.title,
+    },
     description: "시리즈 페이지~",
+    openGraph: {
+      title: {
+        absolute: series.title,
+      },
+      description: `작가 - ${series.writer_nickname}`,
+      images: [cartoon.og_image],
+    }
   };
 }
 
@@ -17,7 +26,7 @@ const SeriesPage = async ({ params, searchParams }) => {
   const { seriesId } = params;
   const { page } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
-  const series = await getSeriesInfo(seriesId);
+  const { series, cartoon } = await getSeriesInfo(seriesId);
   const { cartoons, count, limit } = await getSeriesList(seriesId, currentPage);
 
   const createWriterUrl = () => {
@@ -33,6 +42,9 @@ const SeriesPage = async ({ params, searchParams }) => {
   return (
     <div className={styles.container}>
       <div>
+        <div>
+          <img src={cartoon.og_image} alt="" />
+        </div>
         <h1>{series.title}</h1>
         <h2>
           <Link href={createWriterUrl()}>{series.writer_nickname}</Link>
