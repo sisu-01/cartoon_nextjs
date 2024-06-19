@@ -6,15 +6,22 @@ import Footer from "@/components/footer/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  metadataBase: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
   title: {
     default: "이름미정 메인",
     template: "%s | 이름미정"
   },
   description: '테스트중입니다.',
-  url: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
-  siteName: "이름 미정",
-  type: "website",
+  metadataBase: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
+  openGraph: {
+    title: {
+      default: "이름미정 메인",
+      template: "%s | 이름미정"
+    },
+    description: '테스트중입니다.',
+    url: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
+    siteName: "이름 미정",
+    type: "website",
+  },
 }
 
 export default function RootLayout({ children }) {
