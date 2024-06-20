@@ -32,7 +32,6 @@ const Cartoons = async ({ searchParams }) => {
   // API로 가져오기
   // const cartoons = await getCartoons();
   const { cartoons, count, limit } = await getCartoons(currentPage, currentSort, currentCut, currentKeyword);
-  console.log(currentKeyword);
 
   const render = () => {
     return cartoons.map((cartoon) => (
