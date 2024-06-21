@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="grid-container">
           <Header />
-          <main className="container main">
+          <main className="main">
             {children}
           </main>
           <Footer />
