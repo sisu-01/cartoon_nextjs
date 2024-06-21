@@ -32,11 +32,13 @@ export default function RootLayout({ children }) {
       <meta charSet="utf-8" />
       <meta name='viewport' content='width=device-width, intial-scale=1.0' />
       <body className={inter.className}>
-        <Header />
-        <main className="container main">
-          {children}
-        </main>
-        <Footer />
+        <div className="grid-container">
+          <Header />
+          <main className="container main">
+            {children}
+          </main>
+          <Footer />
+        </div>
         <Analytics />
       </body>
     </html>

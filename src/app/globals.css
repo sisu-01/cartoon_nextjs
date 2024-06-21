@@ -9,8 +9,13 @@ hr {
   margin-bottom: 0;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
 .main {
-  padding-top: 100px;
+  padding: 100px 0 50px 0;
 }
 
 .highlight-text {
