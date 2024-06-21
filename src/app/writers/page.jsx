@@ -38,7 +38,7 @@ const Writers = async ({ searchParams }) => {
                   </span>
                 )}
               </td>
-              <td>{dateFormat(writer.first_date)}</td>
+              <td>{dateFormat(writer.first_date, 'yy.mm.dd')}</td>
               <td>{writer.count}</td>
               <td>{writer.recommend}</td>
               <td>{writer.average}</td>

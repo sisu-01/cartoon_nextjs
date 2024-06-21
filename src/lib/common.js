@@ -28,6 +28,8 @@ export const dateFormat = (date, type='default') => {
 
   if (type === 'short') {
     return [year, month].join('.');
+  } else if (type === 'yy.mm.dd') {
+    return [String(year).slice(2), month, day].join('.');
   } else {
     return [year, month, day].join('.')+' ('+days[d.getDay()]+'요일)';
   }
