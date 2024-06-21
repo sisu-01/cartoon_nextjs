@@ -1,9 +1,11 @@
 .container {
+  display: inline-block;
   margin-left: 5px;
+  margin-right: .3em;
   border: .17em solid #ff4747;
+  padding: 0 .3em;
+  height: 1.5em;
   color: #ff4747;
   font-size: .7em;
   font-weight: 700;
-  margin-right: .3em;
-  padding: 0 .3em;
 }

@@ -45,18 +45,19 @@ const Cartoons = async ({ searchParams }) => {
             </div>
           </div>
           <div className={styles.cartoon}>
-              <div>
-                <span className={styles.title}
-                  dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, currentKeyword) }}
-                >
-                  {/* {cartoon.title} */}
-                </span>
-                {isDateWithin14Days(cartoon.date) && <Up />}
-                <div className={styles.info}>
-                  <span>★{cartoon.recommend}</span>
-                  <span>{dateFormat(cartoon.date)}</span>
-                </div>
-              </div>
+            <p className={styles.titleArea} style={{paddingRight: `${cartoon.writer_nickname.length+0.5}em`}}>
+              <span></span>
+              <span className={styles.title}
+                dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, currentKeyword) }}
+              >
+                {/* {cartoon.title} */}
+              </span>
+              {isDateWithin14Days(cartoon.date) && <Up />}
+            </p>
+            <div className={styles.info}>
+              <span>★{cartoon.recommend}</span>
+              <span>{dateFormat(cartoon.date)}</span>
+            </div>
           </div>
         </a>
         <div className={styles.writer}>
