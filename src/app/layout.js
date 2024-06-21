@@ -1,7 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/navbar";
+import SSRProvider from 'react-bootstrap/SSRProvider';
+import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,9 +31,8 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <meta charSet="utf-8" />
       <meta name='viewport' content='width=device-width, intial-scale=1.0' />
-      {/* <meta property="og:image" content="<generated>" /> */}
       <body className={inter.className}>
-        <Navbar />
+        <Header />
         <main className="container">
           {children}
         </main>
