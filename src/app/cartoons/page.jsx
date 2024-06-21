@@ -53,7 +53,7 @@ const Cartoons = async ({ searchParams }) => {
                 </span>
                 {isDateWithin14Days(cartoon.date) && <Up />}
                 <div className={styles.info}>
-                  <span>{cartoon.recommend}</span>
+                  <span>★{cartoon.recommend}</span>
                   <span>{dateFormat(cartoon.date)}</span>
                 </div>
               </div>
