@@ -23,7 +23,7 @@ const Links = () => {
   return (
     <>
       {links.map(link => (
-        <Nav.Link href={link.path} className={` ${pathName === link.path && styles.active} `}>
+        <Nav.Link key={link.title} href={link.path} className={` ${pathName === link.path && styles.active} `}>
           {link.title}
         </Nav.Link>
         // <Link href={link.path} className={` ${pathName === link.path && styles.active} `}>
