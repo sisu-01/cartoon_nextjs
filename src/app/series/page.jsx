@@ -27,8 +27,8 @@ const Series = async ({ searchParams }) => {
       {series.map((ser) => (
         <div key={ser.id}>
           <Link href={`/series/${ser.id}`}>
-            {ser.title}
             {isDateWithin14Days(ser.last_update) && <Up />}
+            {ser.title}
           </Link>
         </div>
       ))}
