@@ -2,6 +2,7 @@ import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import { getAnonWriterCartoons, getAnonWriterInfo } from "@/lib/data";
 import styles from "./anon.module.css";
 import Paging from "@/components/Paging/paging";
+import Up from "@/components/up/up";
 
 export const generateMetadata = async ({ searchParams }) => {
   const { nickname } = searchParams;
@@ -40,9 +41,7 @@ const Anon = async ({ searchParams }) => {
           <div key={cartoon.id} className={styles.cartoon}>
             <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
               <div>
-                {isDateWithin14Days(cartoon.date) && (
-                  <span><b>UP</b></span>
-                )}
+                {isDateWithin14Days(cartoon.date) && <Up />}
                 <span className={styles.title}>{cartoon.title}</span>
                 <div className={styles.info}>
                   <span>{cartoon.recommend}</span>

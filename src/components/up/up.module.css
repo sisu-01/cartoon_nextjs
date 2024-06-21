@@ -1,0 +1,9 @@
+.container {
+  margin-left: 5px;
+  border: .17em solid #ff4747;
+  color: #ff4747;
+  font-size: .7em;
+  font-weight: 700;
+  margin-right: .3em;
+  padding: 0 .3em;
+}

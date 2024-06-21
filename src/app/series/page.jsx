@@ -5,6 +5,7 @@ import { getSeries } from "@/lib/data";
 import Link from "next/link";
 import styles from "./series.module.css";
 import Filter from "@/components/filter/filter";
+import Up from "@/components/up/up";
 
 export const metadata = {
   title: "Series",
@@ -26,10 +27,8 @@ const Series = async ({ searchParams }) => {
       {series.map((ser) => (
         <div key={ser.id}>
           <Link href={`/series/${ser.id}`}>
-            {isDateWithin14Days(ser.last_update) && (
-              <span><b>UP</b></span>
-            )}
             {ser.title}
+            {isDateWithin14Days(ser.last_update) && <Up />}
           </Link>
         </div>
       ))}

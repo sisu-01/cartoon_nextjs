@@ -8,6 +8,7 @@ import Cut from "@/components/cut/cut";
 import RandomCartoon from "@/components/random/random";
 import Search from "@/components/search/search";
 import Filter from "@/components/filter/filter";
+import Up from "@/components/up/up";
 
 export const metadata = {
   title: 'Cartoons',
@@ -50,9 +51,7 @@ const Cartoons = async ({ searchParams }) => {
                 >
                   {/* {cartoon.title} */}
                 </span>
-                {isDateWithin14Days(cartoon.date) && (
-                  <span><b>UP</b></span>
-                )}
+                {isDateWithin14Days(cartoon.date) && <Up />}
                 <div className={styles.info}>
                   <span>{cartoon.recommend}</span>
                   <span>{dateFormat(cartoon.date)}</span>

@@ -5,6 +5,9 @@ ol, ul {
   padding: 0;
 }
 
+hr {
+  margin-bottom: 0;
+}
 .main {
   padding-top: 100px;
 }

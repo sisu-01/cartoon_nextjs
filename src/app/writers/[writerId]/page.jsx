@@ -2,6 +2,7 @@ import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import { getApi, getWriterCartoons, getWriterInfo } from "@/lib/data";
 import styles from "./writerInfo.module.css";
 import Paging from "@/components/Paging/paging";
+import Up from "@/components/up/up";
 
 export const generateMetadata = async ({params}) => {
   const { writerId } = params;
@@ -87,10 +88,8 @@ const WriterInfo = async ({ params, searchParams }) => {
           <div key={cartoon.id} className={styles.cartoon}>
             <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
               <div>
-                {isDateWithin14Days(cartoon.date) && (
-                  <span><b>UP</b></span>
-                )}
                 <span className={styles.title}>{cartoon.title}</span>
+                {isDateWithin14Days(cartoon.date) && <Up />}
                 <div className={styles.info}>
                   <span>{cartoon.recommend}</span>
                   <span>{dateFormat(cartoon.date)}</span>
