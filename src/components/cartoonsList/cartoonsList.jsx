@@ -1,70 +1,45 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { dateFormat, highlightSearchText, isDateWithin14Days } from "@/lib/common";
 import styles from "./cartoonsList.module.css";
-import Paging from "@/components/Paging/paging";
-import { useRouter, useSearchParams } from 'next/navigation'
-import { dateFormat, isDateWithin14Days } from "@/lib/common";
+import Link from "next/link";
 import Up from "../up/up";
 
-const CartoonsList = ({ writerId }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;  
+const CartoonList = (param) => {
+  const { cartoons, showWriter, currentKeyword } = param;
 
-  const [cartoons, setCartoons] = useState(null);
-  const [count, setCount] = useState(null);
-  const [limit, setLimit] = useState(null);
-
-  useEffect(() => {
-    getCartoons(writerId, currentPage);
-  }, [currentPage]);
-
-  const getCartoons = (writerId, page) => {
-    fetch(`/api/writers/${writerId}?page=${page}`)
-      .then(res => res.json())
-      .then(({ cartoons, count, limit }) => {
-        setCartoons(cartoons);
-        setCount(count);
-        setLimit(limit);
-      })
-      .catch(err => {
-        console.error("Error fetching cartoons:", err);
-      })
-  }
-
-  const handlePageChange = (newPage) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", newPage);
-    router.push(`?${newParams.toString()}`);
-  };
-
-  const renderCartoonList = () => {
-    if (!cartoons) {
-      return <div>없어용</div>;
-    }
-    return cartoons.map(cartoon => (
-      <div key={cartoon.id} className={styles.cartoon}>
-        <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
-          <div>
-            {isDateWithin14Days(cartoon.date) && <Up />}
-            <span className={styles.title}>{cartoon.title}</span>
-            <div className={styles.info}>
-              <span>{cartoon.recommend}</span>
-              <span>{dateFormat(cartoon.date)}</span>
-            </div>
+  return cartoons.map((cartoon) => (
+    <li className={styles.wrappers} key={cartoon.id}>
+      <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
+        <div className={styles.thunbnail}>
+          <div className={styles.imageBox}>
+            <img className={styles.thumbnailImg} src={cartoon.og_image} />
           </div>
-        </a>
-      </div>
-    ));
-  }
-
-  return (
-    <div className={styles.container}>
-      {renderCartoonList()}
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} onClick={handlePageChange} />
-    </div>
-  );
+        </div>
+        <div className={styles.cartoon}>
+          <p className={styles.titleArea} style={{paddingRight: `${cartoon.writer_nickname.length+0.5}em`}}>
+            {isDateWithin14Days(cartoon.date) && <Up />}
+            <span className={styles.title}
+              dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, currentKeyword) }}
+            >
+              {/* {cartoon.title} */}
+            </span>
+          </p>
+          <div className={styles.info}>
+            <span>★{cartoon.recommend}</span>
+            <span>{dateFormat(cartoon.date)}</span>
+          </div>
+        </div>
+      </a>
+      {showWriter? (
+        <div className={styles.writer}>
+          {cartoon.writer_id === "a"? (
+            <Link href={`/writers/anon?nickname=${cartoon.writer_nickname}`}>{cartoon.writer_nickname}</Link>
+          ) : (
+            <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
+          )}
+        </div>
+      ) : ("")}
+    </li>
+  ));
 }
 
-export default CartoonsList;
+export default CartoonList;

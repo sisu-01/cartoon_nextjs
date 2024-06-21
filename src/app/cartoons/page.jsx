@@ -9,6 +9,7 @@ import RandomCartoon from "@/components/random/random";
 import Search from "@/components/search/search";
 import Filter from "@/components/filter/filter";
 import Up from "@/components/up/up";
+import CartoonList from "@/components/cartoonsList/cartoonsList";
 
 export const metadata = {
   title: 'Cartoons',
@@ -35,42 +36,6 @@ const Cartoons = async ({ searchParams }) => {
   // const cartoons = await getCartoons();
   const { cartoons, count, limit } = await getCartoons(currentPage, currentSort, currentCut, currentKeyword);
 
-  const render = () => {
-    return cartoons.map((cartoon) => (
-      <li className={styles.wrappers} key={cartoon.id}>
-        <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
-          <div className={styles.thunbnail}>
-            <div className={styles.imageBox}>
-              <img className={styles.thumbnailImg} src={cartoon.og_image} />
-            </div>
-          </div>
-          <div className={styles.cartoon}>
-            <p className={styles.titleArea} style={{paddingRight: `${cartoon.writer_nickname.length+0.5}em`}}>
-              {isDateWithin14Days(cartoon.date) && <Up />}
-              <span className={styles.title}
-                dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, currentKeyword) }}
-              >
-                {/* {cartoon.title} */}
-              </span>
-            </p>
-            <div className={styles.info}>
-              <span>★{cartoon.recommend}</span>
-              <span>{dateFormat(cartoon.date)}</span>
-            </div>
-          </div>
-        </a>
-        <div className={styles.writer}>
-          {cartoon.writer_id === "a"? (
-            <Link href={`/writers/anon?nickname=${cartoon.writer_nickname}`}>{cartoon.writer_nickname}</Link>
-          ) : (
-            <Link href={`/writers/${cartoon.writer_id}`}>{cartoon.writer_nickname}</Link>
-          )}
-          
-        </div>
-      </li>
-    ));
-  }
-
   return (
     <div className={styles.container}>
       <div className="d-flex align-items-center justify-content-between">
@@ -79,7 +44,7 @@ const Cartoons = async ({ searchParams }) => {
       </div>
       <hr/>
       <ul>
-        {render()}
+        <CartoonList cartoons={cartoons} showWriter={true} />
       </ul>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       <Search keyword={currentKeyword} />
