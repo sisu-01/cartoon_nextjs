@@ -3,10 +3,7 @@
   max-width: 800px;
 }
 
-.table {
-  width: 100%;
-}
-
-.table > thead > tr > th {
-  text-align: left;
+.nickname > a{
+  /* color: black;
+  text-decoration: none; */
 }

@@ -49,16 +49,13 @@ const SortList = ({ sorting }) => {
   return (
     <tr>
       {sortList.map((sort) => (
-        <th key={sort.id}>
-          <input
-            type="radio"
-            name="sort"
-            id={sort.id}
-            value={sort.id}
-            checked={sorting === sort.id}
-            onChange={({target: {value}}) => handler(value)}
-          />
-          <label htmlFor={sort.id}>{sort.text}</label>
+        <th
+          key={sort.id}
+          onClick={() => handler(sort.id)}
+          role="button"
+        >
+          {sort.text}
+          {sorting === sort.id && "▼"}
         </th>
       ))}
     </tr>

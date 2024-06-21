@@ -64,7 +64,7 @@ const Search = ({ keyword }) => {
   }
   
   return (
-    <InputGroup>
+    <InputGroup className="px-2">
       <FloatingLabel
         controlId="floatingInput"
         label="만화 제목 검색"

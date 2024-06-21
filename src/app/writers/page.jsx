@@ -5,6 +5,7 @@ import { getWriters } from "@/lib/data";
 import Link from "next/link";
 import styles from "./writers.module.css";
 import Search from "@/components/search/search";
+import Table from 'react-bootstrap/Table';
 
 export const metadata = {
   title: 'Writers',
@@ -21,21 +22,19 @@ const Writers = async ({ searchParams }) => {
   
   return (
     <div className={styles.container}>
-      <span>✅: 고닉입니다.</span>
-      <table className={styles.table}>
+      {/* <span>✅: 고닉입니다.</span> */}
+      <Table striped bordered hover size={"sm"}>
         <thead>
           <SortList sorting={currentSort} />
         </thead>
         <tbody>
           {writers.map((writer) => (
             <tr key={writer._id}>
-              <td>
+              <td className={styles.nickname}>
                 {writer.id === "a"? (
                   <Link href={`/writers/anon?nickname=${writer.nickname}`}>{writer.nickname}</Link>
                 ) : (
-                  <span>
-                    <Link href={`/writers/${writer.id}`}>{writer.nickname}✅</Link>
-                  </span>
+                  <Link href={`/writers/${writer.id}`}>{writer.nickname}</Link>
                 )}
               </td>
               <td>{dateFormat(writer.first_date, 'yy.mm.dd')}</td>
@@ -45,7 +44,7 @@ const Writers = async ({ searchParams }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       <Search keyword={currentKeyword}/>
     </div>
