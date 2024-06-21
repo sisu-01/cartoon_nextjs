@@ -15,7 +15,9 @@ const CartoonList = (param) => {
           </div>
         </div>
         <div className={styles.cartoon}>
-          <p className={styles.titleArea} style={{paddingRight: `${cartoon.writer_nickname.length+0.5}em`}}>
+          <p
+            className={styles.titleArea}
+            style={showWriter ? { paddingRight: `${cartoon.writer_nickname.length + 0.5}em` } : {}}>
             {isDateWithin14Days(cartoon.date) && <Up />}
             <span className={styles.title}
               dangerouslySetInnerHTML={{ __html: highlightSearchText(cartoon.title, currentKeyword) }}
