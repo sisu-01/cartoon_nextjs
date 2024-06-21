@@ -42,7 +42,7 @@ const Sort = ({ checked }) => {
     <Form>
       <Form.Check
         type="switch"
-        label="개추순으로 정렬"
+        label="추천순"
         onChange={handle}
         checked={checked}
       />

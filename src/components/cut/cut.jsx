@@ -56,7 +56,7 @@ const Cut = ({checked}) => {
 
   return (
     <InputGroup style={{width: "200px"}}>
-      <Form.Select onChange={handler} value={checked} size={"sm"} aria-label="개추 컷">
+      <Form.Select onChange={handler} value={checked} size={"sm"} aria-label="추천컷">
         {options.includes(checked) ? null : (
           <option value={checked}>{checked}</option>
         )}
@@ -69,7 +69,7 @@ const Cut = ({checked}) => {
           기타
         </option>
       </Form.Select>
-      <InputGroup.Text>최소 개추 수</InputGroup.Text>
+      <InputGroup.Text>추천컷</InputGroup.Text>
     </InputGroup>
   );
 }

@@ -22,7 +22,7 @@ const RandomCartoon = () => {
 
   return (
     <Button variant="outline-dark" size={"sm"} onClick={handler}>
-      랜덤 만화 보기
+      랜덤
     </Button>
     // {error && <p style={{ color: 'red' }}>{error}</p>}
   );
