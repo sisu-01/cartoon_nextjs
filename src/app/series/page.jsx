@@ -1,11 +1,10 @@
-import Cut from "@/components/cut/cut";
 import Search from "@/components/search/search";
-import Sort from "@/components/sort/sort";
 import Paging from "@/components/Paging/paging";
 import { isDateWithin14Days } from "@/lib/common";
 import { getSeries } from "@/lib/data";
 import Link from "next/link";
 import styles from "./series.module.css";
+import Filter from "@/components/filter/filter";
 
 export const metadata = {
   title: "Series",
@@ -22,10 +21,7 @@ const Series = async ({ searchParams }) => {
   const { series, count, limit } = await getSeries(currentPage, currentSort, currentCut, currentKeyword);
   return (
     <div className={styles.container}>
-      <div>
-        <Sort checked={currentSort} />
-        <Cut checked={currentCut} />
-      </div>
+      <Filter currentSort={currentSort} currentCut={currentCut}/>
       <hr />
       {series.map((ser) => (
         <div key={ser.id}>

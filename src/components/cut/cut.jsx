@@ -55,8 +55,8 @@ const Cut = ({checked}) => {
   }
 
   return (
-    <InputGroup>
-      <Form.Select onChange={handler} value={checked} aria-label="개추 컷">
+    <InputGroup style={{width: "200px"}}>
+      <Form.Select onChange={handler} value={checked} size={"sm"} aria-label="개추 컷">
         {options.includes(checked) ? null : (
           <option value={checked}>{checked}</option>
         )}

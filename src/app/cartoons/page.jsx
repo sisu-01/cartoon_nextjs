@@ -7,6 +7,7 @@ import Sort from "@/components/sort/sort";
 import Cut from "@/components/cut/cut";
 import RandomCartoon from "@/components/random/random";
 import Search from "@/components/search/search";
+import Filter from "@/components/filter/filter";
 
 export const metadata = {
   title: 'Cartoons',
@@ -73,10 +74,9 @@ const Cartoons = async ({ searchParams }) => {
 
   return (
     <div className={styles.container}>
-      <RandomCartoon />
-      <div>
-        <Sort checked={currentSort} />
-        <Cut checked={currentCut} />
+      <div className="d-flex align-items-center justify-content-between">
+        <RandomCartoon />
+        <Filter currentSort={currentSort} currentCut={currentCut}/>
       </div>
       <hr/>
       <ul>
