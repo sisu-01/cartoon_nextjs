@@ -44,7 +44,7 @@ const Cartoons = async ({ searchParams }) => {
       </div>
       <hr/>
       <ul>
-        <CartoonList cartoons={cartoons} showWriter={true} />
+        <CartoonList cartoons={cartoons} showWriter={true} currentKeyword={currentKeyword} />
       </ul>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
       <Search keyword={currentKeyword} />
