@@ -4,6 +4,7 @@ import styles from "./seriesCartoons.module.css";
 import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import Link from "next/link";
 import Up from "@/components/up/up";
+import CartoonList from "@/components/cartoonsList/cartoonsList";
 
 export const generateMetadata = async ({params}) => {
   const { seriesId } = params;
@@ -53,27 +54,10 @@ const SeriesPage = async ({ params, searchParams }) => {
         <span>작가 이름을 눌러 상세 페이지도 확인해보세요</span>
       </div>
       <hr/>
-      <div>
-        {cartoons.map((cartoon) => (
-          <div className={styles.wrappers} key={cartoon.id}>
-            <div className={styles.cartoon}>
-              <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
-                <div>
-                  {isDateWithin14Days(cartoon.date) && <Up />}
-                  <span className={styles.title}>
-                    {cartoon.title}
-                  </span>
-                  <div className={styles.info}>
-                    <span>{cartoon.recommend}</span>
-                    <span>{dateFormat(cartoon.date)}</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        ))}
-        <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
-      </div>
+      <ul>
+        <CartoonList cartoons={cartoons} showWriter={false} />
+      </ul>
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
     </div>
   );
 }

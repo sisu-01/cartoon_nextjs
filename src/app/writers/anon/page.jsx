@@ -3,6 +3,7 @@ import { getAnonWriterCartoons, getAnonWriterInfo } from "@/lib/data";
 import styles from "./anon.module.css";
 import Paging from "@/components/Paging/paging";
 import Up from "@/components/up/up";
+import CartoonList from "@/components/cartoonsList/cartoonsList";
 
 export const generateMetadata = async ({ searchParams }) => {
   const { nickname } = searchParams;
@@ -36,23 +37,10 @@ const Anon = async ({ searchParams }) => {
         <span>평균 개추: {writer.average}</span>
       </div>
       <hr/>
-      <div>
-        {cartoons.map(cartoon => (
-          <div key={cartoon.id} className={styles.cartoon}>
-            <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
-              <div>
-                {isDateWithin14Days(cartoon.date) && <Up />}
-                <span className={styles.title}>{cartoon.title}</span>
-                <div className={styles.info}>
-                  <span>{cartoon.recommend}</span>
-                  <span>{dateFormat(cartoon.date)}</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        ))}
-        <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
-      </div>
+      <ul>
+        <CartoonList cartoons={cartoons} showWriter={false} />
+      </ul>
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
     </div>
   );
 }
