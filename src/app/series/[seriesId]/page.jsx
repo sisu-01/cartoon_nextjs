@@ -59,9 +59,9 @@ const SeriesPage = async ({ params, searchParams }) => {
             <div className={styles.cartoon}>
               <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
                 <div>
+                  {isDateWithin14Days(cartoon.date) && <Up />}
                   <span className={styles.title}>
                     {cartoon.title}
-                    {isDateWithin14Days(cartoon.date) && <Up />}
                   </span>
                   <div className={styles.info}>
                     <span>{cartoon.recommend}</span>

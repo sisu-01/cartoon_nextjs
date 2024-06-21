@@ -47,8 +47,8 @@ const CartoonsList = ({ writerId }) => {
       <div key={cartoon.id} className={styles.cartoon}>
         <a href={`https://gall.dcinside.com/board/view/?id=cartoon&no=${cartoon.id}`} target="_blank">
           <div>
-            <span className={styles.title}>{cartoon.title}</span>
             {isDateWithin14Days(cartoon.date) && <Up />}
+            <span className={styles.title}>{cartoon.title}</span>
             <div className={styles.info}>
               <span>{cartoon.recommend}</span>
               <span>{dateFormat(cartoon.date)}</span>
