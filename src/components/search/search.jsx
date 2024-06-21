@@ -1,8 +1,11 @@
 "use client";
 
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useState } from "react";
-import styles from "./search.module.css";
 
 const Search = ({ keyword }) => {
   const router = useRouter();
@@ -55,23 +58,30 @@ const Search = ({ keyword }) => {
   }
 
   const resetKeyword = () => {
+    if (tempText === "") return false;
     setTempText("");
     router.push(`${pathName}?${delteQueryString()}`);
   }
   
   return (
-    <div className={styles.container}>
-      <input
-        type="text"
-        name=""
-        id=""
-        value={tempText}
-        onChange={(e) => setTempText(e.target.value)}
-        onKeyDown={() => clearTime()}
-        onKeyUp={() => setTime()}
-      />
-      <button onClick={() => resetKeyword()}>X</button>
-    </div>
+    <InputGroup>
+      <FloatingLabel
+        controlId="floatingInput"
+        label="만화 제목 검색"
+      >
+        <Form.Control
+          type="text"
+          placeholder="만화 제목 검색"
+          value={tempText}
+          onChange={(e) => setTempText(e.target.value)}
+          onKeyDown={() => clearTime()}
+          onKeyUp={() => setTime()}
+        />
+      </FloatingLabel>
+      <Button variant="outline-secondary" onClick={() => resetKeyword()}>
+        X
+      </Button>
+    </InputGroup>
   );
 }
 

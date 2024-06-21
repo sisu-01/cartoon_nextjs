@@ -1,7 +1,7 @@
 import Cut from "@/components/cut/cut";
 import Search from "@/components/search/search";
 import Sort from "@/components/sort/sort";
-import Paging from "@/components/testPaging/paging";
+import Paging from "@/components/Paging/paging";
 import { isDateWithin14Days } from "@/lib/common";
 import { getSeries } from "@/lib/data";
 import Link from "next/link";

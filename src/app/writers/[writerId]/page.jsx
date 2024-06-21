@@ -1,7 +1,7 @@
 import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import { getApi, getWriterCartoons, getWriterInfo } from "@/lib/data";
 import styles from "./writerInfo.module.css";
-import Paging from "@/components/testPaging/paging";
+import Paging from "@/components/Paging/paging";
 
 export const generateMetadata = async ({params}) => {
   const { writerId } = params;

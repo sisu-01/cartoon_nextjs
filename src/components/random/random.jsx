@@ -1,5 +1,6 @@
 "use client";
 
+import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 
 const RandomCartoon = () => {
@@ -20,10 +21,10 @@ const RandomCartoon = () => {
   };
 
   return (
-    <div>
-      <button onClick={handler}>🔀랜덤 만화 보기</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
+    <Button variant="outline-dark" onClick={handler}>
+      랜덤 만화 보기
+    </Button>
+    // {error && <p style={{ color: 'red' }}>{error}</p>}
   );
 }
 

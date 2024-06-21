@@ -1,5 +1,7 @@
 "use client";
 
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react';
 
@@ -53,8 +55,8 @@ const Cut = ({checked}) => {
   }
 
   return (
-    <div>
-      <select onChange={handler} value={checked}>
+    <InputGroup>
+      <Form.Select onChange={handler} value={checked} aria-label="개추 컷">
         {options.includes(checked) ? null : (
           <option value={checked}>{checked}</option>
         )}
@@ -66,9 +68,9 @@ const Cut = ({checked}) => {
         <option value="etc">
           기타
         </option>
-      </select>
-      <span className='input-group-text'>최소 개추 수</span>
-    </div>
+      </Form.Select>
+      <InputGroup.Text>최소 개추 수</InputGroup.Text>
+    </InputGroup>
   );
 }
 

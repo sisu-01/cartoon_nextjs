@@ -1,5 +1,5 @@
 import SortList from "@/components/sortList/sortList";
-import Paging from "@/components/testPaging/paging";
+import Paging from "@/components/Paging/paging";
 import { dateFormat } from "@/lib/common";
 import { getWriters } from "@/lib/data";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import { getAnonWriterCartoons, getAnonWriterInfo } from "@/lib/data";
 import styles from "./anon.module.css";
-import Paging from "@/components/testPaging/paging";
+import Paging from "@/components/Paging/paging";
 
 export const generateMetadata = async ({ searchParams }) => {
   const { nickname } = searchParams;

@@ -1,5 +1,6 @@
 "use client";
 
+import Form from 'react-bootstrap/Form';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react';
 
@@ -38,7 +39,14 @@ const Sort = ({ checked }) => {
   }
 
   return (
-    <button onClick={() => handle()}>{checked? '개추순 해제' : '누르면 개추순'}</button>
+    <Form>
+      <Form.Check
+        type="switch"
+        label="개추순으로 정렬"
+        onChange={handle}
+        checked={checked}
+      />
+    </Form>
   );
 }
 

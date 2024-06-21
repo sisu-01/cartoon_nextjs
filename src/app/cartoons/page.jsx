@@ -1,4 +1,4 @@
-import Paging from "@/components/testPaging/paging";
+import Paging from "@/components/Paging/paging";
 import { dateFormat, highlightSearchText, isDateWithin14Days } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";

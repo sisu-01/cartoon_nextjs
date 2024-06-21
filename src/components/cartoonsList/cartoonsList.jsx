@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import styles from "./cartoonsList.module.css";
-import Paging from "@/components/testPaging/paging";
+import Paging from "@/components/Paging/paging";
 import { useRouter, useSearchParams } from 'next/navigation'
 import { dateFormat, isDateWithin14Days } from "@/lib/common";
 
