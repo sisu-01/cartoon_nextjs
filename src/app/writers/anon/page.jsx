@@ -22,11 +22,14 @@ const Anon = async ({ searchParams }) => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <h1>{writer.nickname}</h1>
+      <div className={styles.nicknameWrapper}>
+        <h2>
+          <span className={styles.nickname}>{writer.nickname}</span>
+          <span>님의 작품</span>
+        </h2>
+        <span className="text-secondary">총 {writer.count}</span>
       </div>
-      <hr/>
-      <div className={styles.dates}>
+      {/* <div className={styles.dates}>
         <span>첫 념글: {dateFormat(writer.first_date)}</span>
         <span>최근 활동일: {dateFormat(writer.last_date)}</span>
       </div>
@@ -35,7 +38,7 @@ const Anon = async ({ searchParams }) => {
         <span>만화 개수: {writer.count}</span>
         <span>개추 총합: {writer.recommend}</span>
         <span>평균 개추: {writer.average}</span>
-      </div>
+      </div> */}
       <hr/>
       <ul>
         <CartoonList cartoons={cartoons} showWriter={false} />

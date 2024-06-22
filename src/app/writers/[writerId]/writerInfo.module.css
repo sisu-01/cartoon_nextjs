@@ -1,3 +1,29 @@
+.container {
+  margin: auto;
+  max-width: 800px;
+}
+
+.nicknameWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 5px;
+}
+
+.nickname {
+  color: skyblue;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.infoWrapper > div {
+  padding: 5px;
+}
+
 .dates {
   display: flex;
   flex-direction: column;
@@ -8,10 +34,7 @@
   flex-direction: column;
   gap: 5px;
 }
-.container {
-  margin: auto;
-  max-width: 800px;
-}
+
 .cartoon {
   flex: 1;
 }
