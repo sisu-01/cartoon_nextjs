@@ -42,10 +42,11 @@ const Sort = ({ checked }) => {
     <Form>
       <Form.Check
         type="switch"
-        label="추천순"
+        id="sort"
         onChange={handle}
         checked={checked}
       />
+      <label htmlFor="sort">추천순</label>
     </Form>
   );
 }
