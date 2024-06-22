@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useState } from "react";
 
-const Search = ({ keyword }) => {
+const Search = ({ keyword, label }) => {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
@@ -67,11 +67,11 @@ const Search = ({ keyword }) => {
     <InputGroup className="px-2">
       <FloatingLabel
         controlId="floatingInput"
-        label="만화 제목 검색"
+        label={label}
       >
         <Form.Control
           type="text"
-          placeholder="만화 제목 검색"
+          placeholder={label}
           value={tempText}
           onChange={(e) => setTempText(e.target.value)}
           onKeyDown={() => clearTime()}

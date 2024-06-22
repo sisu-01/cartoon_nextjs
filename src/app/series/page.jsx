@@ -33,7 +33,7 @@ const Series = async ({ searchParams }) => {
         </div>
       ))}
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
-      <Search keyword={currentKeyword} />
+      <Search keyword={currentKeyword} label={"시리즈 제목 검색"} />
     </div>
   );
 }

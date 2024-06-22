@@ -47,7 +47,7 @@ const Cartoons = async ({ searchParams }) => {
         <CartoonList cartoons={cartoons} showWriter={true} currentKeyword={currentKeyword} />
       </ul>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
-      <Search keyword={currentKeyword} />
+      <Search keyword={currentKeyword} label={"만화 제목 검색"} />
     </div>
   );
 }

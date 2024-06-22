@@ -46,7 +46,7 @@ const Writers = async ({ searchParams }) => {
         </tbody>
       </Table>
       <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
-      <Search keyword={currentKeyword}/>
+      <Search keyword={currentKeyword} label={"작가 이름 검색"} />
     </div>
   );
 }
