@@ -1,9 +1,7 @@
 import Paging from "@/components/Paging/paging";
 import { getSeriesInfo, getSeriesList } from "@/lib/data";
 import styles from "./seriesCartoons.module.css";
-import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import Link from "next/link";
-import Up from "@/components/up/up";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 
 export const generateMetadata = async ({params}) => {

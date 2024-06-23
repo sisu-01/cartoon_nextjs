@@ -1,4 +1,4 @@
-import { escapeRegex } from "./common";
+import { escapeRegex, isWithinSixMonths } from "./common";
 import { Cartoons, Writers, Series } from "./models";
 import { connectToDb } from "./utils";
 
@@ -178,7 +178,11 @@ export const getSeries = async (page, sort, cut, keyword) => {
 export const getSeriesInfo = async (series_id) => {
   try {
     await connectToDb();
-    const series = await Series.findOne({ id: series_id });
+    const series = await Series.findOne(
+      { id: series_id },
+      { _id: false, id: false, count: false, average: false, last_update: false }
+    );
+    
     const cartoon = await Cartoons.findOne({ id: series.cartoons_id_list[0] }, { _id: false, og_image: true });
     return { series, cartoon };
   } catch (error) {
@@ -191,10 +195,18 @@ export const  getSeriesList = async (series_id, page) => {
   try {
     await connectToDb();
     const skip = (page - 1) * limit;
-    const temp = await Series.find({ id: series_id }, { _id: 0, cartoons_id_list: 1, count: 1 });
-    const { cartoons_id_list, count } = temp[0];
+    const temp = await Series.find({ id: series_id }, { _id: 0, cartoons_id_list: 1, count: 1, last_update: 1 });
+    const { cartoons_id_list, count, last_update } = temp[0];
+    const isSix = isWithinSixMonths(last_update);
+    let sortQuery = {};
+    if (isSix) {
+      cartoons_id_list.reverse();
+      sortQuery = { _id: -1 };
+    } else {
+      sortQuery = { _id: 1 };
+    }
     const paging = cartoons_id_list.slice(skip, skip + limit);
-    const cartoons = await Cartoons.find({ id: { $in: paging}}).sort({ _id: 1 });
+    const cartoons = await Cartoons.find({ id: { $in: paging}}).sort(sortQuery);
     return { cartoons, count, limit };
   } catch (error) {
     console.log(error);

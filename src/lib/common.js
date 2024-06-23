@@ -52,6 +52,20 @@ export const isDateWithin14Days = (date) => {
   return daysDiff >= -14;
 }
 
+/**
+ * 주어진 날짜가 현재 날짜로부터 6개월 이내인지 확인하는 함수
+ * 
+ * @param {string} dateString - ISO 8601 형식의 날짜 문자열 (예: '2024-06-09T13:33:40.000Z')
+ * @returns {boolean} - 주어진 날짜가 6개월 이내이면 true, 아니면 false
+ */
+export const isWithinSixMonths = (dateString) => {
+  const now = new Date();
+  const givenDate = new Date(dateString);
+  const sixMonths = new Date();
+  sixMonths.setMonth(now.getMonth() - 6);
+  return givenDate >= sixMonths;
+}
+
 export const escapeRegex = (string)  => {
   // 정규 표현식에서 특수한 의미를 가지는 모든 문자를 이스케이프 처리
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $&는 매치된 전체 문자열을 의미
