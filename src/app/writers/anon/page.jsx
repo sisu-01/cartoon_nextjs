@@ -1,9 +1,8 @@
-import { dateFormat, isDateWithin14Days } from "@/lib/common";
 import { getAnonWriterCartoons, getAnonWriterInfo } from "@/lib/data";
 import styles from "./anon.module.css";
 import Paging from "@/components/Paging/paging";
-import Up from "@/components/up/up";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
+import Button from 'react-bootstrap/Button';
 
 export const generateMetadata = async ({ searchParams }) => {
   const { nickname } = searchParams;
@@ -15,13 +14,23 @@ export const generateMetadata = async ({ searchParams }) => {
 }
 
 const Anon = async ({ searchParams }) => {
-  const { nickname, page } = searchParams;
+  const { nickname, page, prev } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getAnonWriterInfo(nickname);
   const { cartoons, count, limit } = await getAnonWriterCartoons(nickname, currentPage);
 
   return (
     <div className={styles.container}>
+      {prev !== undefined && (
+        <Button
+          variant="secondary"
+          className="m-2"
+          size={"sm"}
+          href={prev}
+        >
+          목록으로
+        </Button>
+      )}
       <div className={styles.nicknameWrapper}>
         <h2>
           <span className={styles.nickname}>{writer.nickname}</span>

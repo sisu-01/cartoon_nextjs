@@ -1,9 +1,9 @@
-import { dateFormat, isDateWithin14Days } from "@/lib/common";
+import { dateFormat } from "@/lib/common";
 import { getApi, getWriterCartoons, getWriterInfo } from "@/lib/data";
 import styles from "./writerInfo.module.css";
 import Paging from "@/components/Paging/paging";
-import Up from "@/components/up/up";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
+import Button from 'react-bootstrap/Button';
 
 export const generateMetadata = async ({params}) => {
   const { writerId } = params;
@@ -16,7 +16,7 @@ export const generateMetadata = async ({params}) => {
 
 const WriterInfo = async ({ params, searchParams }) => {
   const { writerId } = params;
-  const { page } = searchParams;
+  const { page, prev } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getWriterInfo(writerId);
   /*
@@ -36,10 +36,20 @@ const WriterInfo = async ({ params, searchParams }) => {
   average: 50
   */
  const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
- const test = await getApi(writerId);
+  // const test = await getApi(writerId);
 
   return (
     <div className={styles.container}>
+      {prev !== undefined && (
+        <Button
+          variant="secondary"
+          className="m-2"
+          size={"sm"}
+          href={prev}
+        >
+          목록으로
+        </Button>
+      )}
       {/* <div>
         [{test.map((te, index) => (
           <div key={te.id}>

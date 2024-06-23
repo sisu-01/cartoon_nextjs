@@ -19,6 +19,16 @@ const Writers = async ({ searchParams }) => {
   const currentKeyword = keyword ? keyword : false;
 
   const { writers, count, limit } = await getWriters(currentPage, currentSort, currentKeyword);
+
+  let prev_url = "/writers?";
+  let queryParams = [];
+  if (currentSort !== undefined) queryParams.push(`sort=${currentSort}`);
+  if (currentKeyword) queryParams.push(`keyword=${currentKeyword}`);
+  if (currentPage > 1) queryParams.push(`page=${currentPage}`);
+  if (queryParams.length > 0) {
+    prev_url += queryParams.join('&');
+  }
+  prev_url = encodeURIComponent(prev_url);
   
   return (
     <div className={styles.container}>
@@ -32,9 +42,9 @@ const Writers = async ({ searchParams }) => {
             <tr key={writer._id}>
               <td className={styles.nickname}>
                 {writer.id === "a"? (
-                  <Link href={`/writers/anon?nickname=${writer.nickname}`}>{writer.nickname}</Link>
+                  <Link href={`/writers/anon?nickname=${writer.nickname}&prev=${prev_url}`}>{writer.nickname}</Link>
                 ) : (
-                  <Link href={`/writers/${writer.id}`}>{writer.nickname}</Link>
+                  <Link href={`/writers/${writer.id}?prev=${prev_url}`}>{writer.nickname}</Link>
                 )}
               </td>
               <td>{dateFormat(writer.first_date, 'yy.mm.dd')}</td>
