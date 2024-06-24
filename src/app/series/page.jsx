@@ -20,13 +20,25 @@ const Series = async ({ searchParams }) => {
   const currentKeyword = keyword ? keyword : false;
   
   const { series, count, limit } = await getSeries(currentPage, currentSort, currentCut, currentKeyword);
+
+  let prev_url = "/series?";
+  let queryParams = [];
+  if (currentSort !== undefined) queryParams.push(`sort=${currentSort}`);
+  if (currentCut) queryParams.push(`sort=rating`);
+  if (currentKeyword) queryParams.push(`keyword=${currentKeyword}`);
+  if (currentPage > 1) queryParams.push(`page=${currentPage}`);
+  if (queryParams.length > 0) {
+    prev_url += queryParams.join('&');
+  }
+  prev_url = encodeURIComponent(prev_url);
+
   return (
     <div className={styles.container}>
       <Filter currentSort={currentSort} currentCut={currentCut}/>
       <hr />
       {series.map((ser) => (
         <div key={ser.id}>
-          <Link href={`/series/${ser.id}`}>
+          <Link href={`/series/${ser.id}?prev=${prev_url}`}>
             {isDateWithin14Days(ser.last_update) && <Up />}
             {ser.title}
           </Link>

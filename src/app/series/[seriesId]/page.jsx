@@ -2,6 +2,7 @@ import Paging from "@/components/Paging/paging";
 import { getSeriesInfo, getSeriesList } from "@/lib/data";
 import styles from "./seriesCartoons.module.css";
 import Link from "next/link";
+import Button from 'react-bootstrap/Button';
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 
 export const generateMetadata = async ({params}) => {
@@ -24,7 +25,7 @@ export const generateMetadata = async ({params}) => {
 
 const SeriesPage = async ({ params, searchParams }) => {
   const { seriesId } = params;
-  const { page } = searchParams;
+  const { page, prev } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const { series, cartoon } = await getSeriesInfo(seriesId);
   const { cartoons, count, limit } = await getSeriesList(seriesId, currentPage);
@@ -41,6 +42,16 @@ const SeriesPage = async ({ params, searchParams }) => {
 
   return (
     <div className={styles.container}>
+      {prev !== undefined && (
+        <Button
+          variant="secondary"
+          className="m-2"
+          size={"sm"}
+          href={prev}
+        >
+          목록으로
+        </Button>
+      )}
       <div>
         <div>
           <img src={cartoon.og_image} alt="" />
