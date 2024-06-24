@@ -146,7 +146,7 @@ export const getAnonWriterCartoons = async (nickname, page) => {
 }
 
 export const getSeries = async (page, sort, cut, keyword) => {
-  const limit = 36;
+  const limit = 12;
   try {
     await connectToDb();
     let query = {};
