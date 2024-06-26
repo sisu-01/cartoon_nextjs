@@ -48,6 +48,7 @@ const Anon = async ({ searchParams }) => {
         <span>개추 총합: {writer.recommend}</span>
         <span>평균 개추: {writer.average}</span>
       </div> */}
+      <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
       <hr/>
       <ul>
         <CartoonList cartoons={cartoons} showWriter={false} />
