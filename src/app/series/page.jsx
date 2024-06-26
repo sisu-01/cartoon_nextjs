@@ -26,8 +26,8 @@ const Series = async ({ searchParams }) => {
 
   let prev_url = "/series?";
   let queryParams = [];
-  if (currentSort !== undefined) queryParams.push(`sort=${currentSort}`);
-  if (currentCut) queryParams.push(`sort=rating`);
+  if (currentSort !== undefined) queryParams.push(`sort=rating`);
+  if (currentCut) queryParams.push(`cut=${currentCut}`);
   if (currentKeyword) queryParams.push(`keyword=${currentKeyword}`);
   if (currentPage > 1) queryParams.push(`page=${currentPage}`);
   if (queryParams.length > 0) {
@@ -54,7 +54,7 @@ const Series = async ({ searchParams }) => {
               <Link href={`/series/${ser.id}?prev=${prev_url}`} className={styles.link}>
                 <div className={styles.thunbnail}>
                   <div className={styles.imageBox}>
-                    <img className={styles.thumbnailImg} src={temp} alt="" />
+                    <img className={styles.thumbnailImg} src={ser.og_image} alt="" />
                   </div>
                 </div>
               </Link>

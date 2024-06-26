@@ -36,6 +36,7 @@ const seriesSchema = new mongoose.Schema({
   last_update: Date,
   average: Number,
   cartoons_id_list: [Number],
+  og_image: String,
 })
 
 export const Cartoons = mongoose.models.Cartoons || mongoose.model("Cartoons", cartoonsSchema);
