@@ -96,6 +96,7 @@ const WriterInfo = async ({ params, searchParams }) => {
           <span>평균 개추: {writer.average}</span>
         </div> */}
       </div>
+      <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
       <hr/>
       <ul>
         <CartoonList cartoons={cartoons} showWriter={false} />
