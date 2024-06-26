@@ -35,8 +35,6 @@ const Series = async ({ searchParams }) => {
   }
   prev_url = encodeURIComponent(prev_url);
 
-  const temp = "https://dcimg2.dcinside.co.kr/viewimage.php?id=2ebcc232eadd36&no=24b0d769e1d32ca73fe980fa11d028315d554368bac55d95d5bf54b6a4812c0858cd3f65d2f076af45bfb883f3c073d9cdcb4ba78890d3a6c1f8d393478b9ec7f5";
-
   return (
     <div className={styles.container}>
       <Filter currentSort={currentSort} currentCut={currentCut}/>
