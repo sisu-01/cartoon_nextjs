@@ -33,7 +33,7 @@ const Writers = async ({ searchParams }) => {
   return (
     <div className={styles.container}>
       {/* <span>✅: 고닉입니다.</span> */}
-      <caption>라벨을 눌러 정렬할 수 있습니다.</caption>
+      <span>라벨을 눌러 정렬할 수 있습니다.</span>
       <Table striped bordered hover size={"sm"}>
         <thead>
           <SortList sorting={currentSort} />
