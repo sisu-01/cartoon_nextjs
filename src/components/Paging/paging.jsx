@@ -71,7 +71,7 @@ const Paging = ({page, perPage, count, pageBtn, onClick}) => {
     newArr.push(<Pagination.Last key='_last' disabled />);
   }
   return (
-    <Pagination size={"sm"} className="my-5 justify-content-center">{newArr}</Pagination>
+    <Pagination className="my-5 justify-content-center">{newArr}</Pagination>
   );
 }
 
