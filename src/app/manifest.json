@@ -1,6 +1,6 @@
 {
-  "short_name": "이름-미정",
-  "name": "프로젝트 이름 미정",
+  "short_name": "카연갤북마크",
+  "name": "카툰-연재 갤러리 북마크",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/cartoons",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#00ff00",
   "background_color": "#3a4690"

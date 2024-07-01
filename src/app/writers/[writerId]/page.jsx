@@ -10,7 +10,7 @@ export const generateMetadata = async ({params}) => {
   const writer = await getWriterInfo(writerId);
   return {
     title: writer.nickname,
-    description: "작가 상세 페이지지롱",
+    description: "카연갤 작가",
   };
 }
 

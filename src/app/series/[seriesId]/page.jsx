@@ -12,7 +12,7 @@ export const generateMetadata = async ({params}) => {
     title: {
       absolute: series.title,
     },
-    description: "시리즈 페이지~",
+    description: "카연갤 시리즈",
     openGraph: {
       title: {
         absolute: series.title,

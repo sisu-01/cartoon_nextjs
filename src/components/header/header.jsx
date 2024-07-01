@@ -27,7 +27,7 @@ const Header = () => {
                     height="30"
                     className="d-inline-block align-top"
                   />{' '}
-                  이름미정
+                  카연갤북마크
                 </Navbar.Brand>
               </Container>
             </Navbar>
