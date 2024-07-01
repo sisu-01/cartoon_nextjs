@@ -9,19 +9,19 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: {
-    default: "이름미정 메인",
-    template: "%s | 이름미정"
+    default: "카연갤북마크",
+    template: "%s | 카연갤북마크"
   },
   description: '테스트중입니다.',
   metadataBase: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
   openGraph: {
     title: {
-      default: "이름미정 메인",
-      template: "%s | 이름미정"
+      default: "카연갤북마크",
+      template: "%s | 카연갤북마크"
     },
     description: '테스트중입니다.',
     url: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
-    siteName: "이름 미정",
+    siteName: "카연갤북마크",
     type: "website",
   },
 }
