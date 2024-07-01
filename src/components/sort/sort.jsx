@@ -4,9 +4,8 @@ import Form from 'react-bootstrap/Form';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react';
 
-const Sort = (a) => {
-  console.log(a);
-  const { checked } = a;
+const Sort = (param) => {
+  const { checked } = param;
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
@@ -33,7 +32,6 @@ const Sort = (a) => {
   )
 
   const handle = () => {
-    console.log(checked);
     if (!checked) {
       router.push(`${pathName}?${createQueryString("rating")}`);
     } else {
