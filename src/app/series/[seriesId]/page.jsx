@@ -4,6 +4,7 @@ import styles from "./seriesCartoons.module.css";
 import Link from "next/link";
 import Button from 'react-bootstrap/Button';
 import CartoonList from "@/components/cartoonsList/cartoonsList";
+import Share from "@/components/share/share";
 
 export const generateMetadata = async ({params}) => {
   const { seriesId } = params;
@@ -61,6 +62,9 @@ const SeriesPage = async ({ params, searchParams }) => {
           <Link href={createWriterUrl()}>{series.writer_nickname}</Link>
         </h2>
         <span>작가 이름을 눌러 상세 페이지도 확인해보세요</span>
+      </div>
+      <div className="d-flex align-items-center justify-content-between ps-2">
+        <Share />
       </div>
       <hr/>
       <ul>

@@ -3,6 +3,7 @@ import styles from "./anon.module.css";
 import Paging from "@/components/Paging/paging";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 import Button from 'react-bootstrap/Button';
+import Share from "@/components/share/share";
 
 export const generateMetadata = async ({ searchParams }) => {
   const { nickname } = searchParams;
@@ -54,7 +55,10 @@ const Anon = async ({ searchParams }) => {
         <span>개추 총합: {writer.recommend}</span>
         <span>평균 개추: {writer.average}</span>
       </div> */}
-      <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
+      <div className="d-flex align-items-center justify-content-between ps-2">
+        <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
+        <Share anon={writer.nickname} />
+      </div>
       <hr/>
       <ul>
         <CartoonList cartoons={cartoons} showWriter={false} />

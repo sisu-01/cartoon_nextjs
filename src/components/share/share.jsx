@@ -8,11 +8,14 @@ import Modal from "react-bootstrap/Modal";
 
 import styles from "./share.module.css";
 
-const Share = () => {
+const Share = ({ anon }) => {
   const pathname = usePathname();
   let shareUrl = "";
   if (typeof window !== "undefined") {
     shareUrl = window.location.protocol+"//"+window.location.host+pathname;
+  }
+  if (anon) {
+    shareUrl += `?nickname=${anon}`;
   }
 
   const [show, setShow] = useState(false);

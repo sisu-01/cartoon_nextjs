@@ -4,6 +4,7 @@ import styles from "./writerInfo.module.css";
 import Paging from "@/components/Paging/paging";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 import Button from 'react-bootstrap/Button';
+import Share from "@/components/share/share";
 
 export const generateMetadata = async ({params}) => {
   const { writerId } = params;
@@ -102,7 +103,10 @@ const WriterInfo = async ({ params, searchParams }) => {
           <span>평균 개추: {writer.average}</span>
         </div> */}
       </div>
-      <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
+      <div className="d-flex align-items-center justify-content-between ps-2">
+        <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
+        <Share />
+      </div>
       <hr/>
       <ul>
         <CartoonList cartoons={cartoons} showWriter={false} />
