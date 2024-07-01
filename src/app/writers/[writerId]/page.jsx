@@ -14,9 +14,9 @@ export const generateMetadata = async ({params}) => {
     description: "카연갤 작가",
     openGraph: {
       title: {
-        absolute: `작가 - ${writer.nickname}`,
+        absolute: `${writer.nickname}의 만화 목록`,
       },
-      description: `${writer.nickname}의 만화 목록`,
+      description: `카툰-연재 갤러리 북마크`,
     }
   };
 }
