@@ -53,7 +53,7 @@ const Anon = async ({ searchParams }) => {
       <ul>
         <CartoonList cartoons={cartoons} showWriter={false} />
       </ul>
-      <Paging page={currentPage} perPage={limit} count={count} pageBtn={10} />
+      <Paging page={currentPage} perPage={limit} count={count} pageBtn={5} />
     </div>
   );
 }
