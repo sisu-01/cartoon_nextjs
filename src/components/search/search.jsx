@@ -64,7 +64,7 @@ const Search = ({ keyword, label }) => {
   }
   
   return (
-    <InputGroup className="px-2">
+    <InputGroup className="px-2" style={{maxWidth:'270px', margin: '0 auto'}}>
       <FloatingLabel
         controlId="floatingInput"
         label={label}
