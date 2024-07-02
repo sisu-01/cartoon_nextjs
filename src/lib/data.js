@@ -180,11 +180,9 @@ export const getSeriesInfo = async (series_id) => {
     await connectToDb();
     const series = await Series.findOne(
       { id: series_id },
-      { _id: false, id: false, count: false, average: false, last_update: false }
+      { _id: false, id: false, last_update: false }
     );
-    
-    const cartoon = await Cartoons.findOne({ id: series.cartoons_id_list[0] }, { _id: false, og_image: true });
-    return { series, cartoon };
+    return { series };
   } catch (error) {
     console.log(error);
     throw new Error("failed to fetch series detail");

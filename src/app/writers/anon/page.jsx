@@ -25,6 +25,11 @@ const Anon = async ({ searchParams }) => {
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getAnonWriterInfo(nickname);
   const { cartoons, count, limit } = await getAnonWriterCartoons(nickname, currentPage);
+  const shareArgs = {
+    title: `작가 - ${writer.nickname}`,
+    desc: `${writer.nickname}의 만화 목록`,
+    rcmd: writer.recommend
+  }
 
   return (
     <div className={styles.container}>
@@ -57,7 +62,7 @@ const Anon = async ({ searchParams }) => {
       </div> */}
       <div className="d-flex align-items-center justify-content-between ps-2">
         <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
-        <Share anon={writer.nickname} />
+        <Share shareArgs={shareArgs} anon={writer.nickname} />
       </div>
       <hr/>
       <ul>

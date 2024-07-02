@@ -8,7 +8,7 @@ import Share from "@/components/share/share";
 
 export const generateMetadata = async ({params}) => {
   const { seriesId } = params;
-  const { series, cartoon } = await getSeriesInfo(seriesId);
+  const { series } = await getSeriesInfo(seriesId);
   return {
     title: {
       absolute: series.title,
@@ -19,7 +19,7 @@ export const generateMetadata = async ({params}) => {
         absolute: series.title,
       },
       description: `작가 - ${series.writer_nickname}`,
-      images: [cartoon.og_image],
+      images: [series.og_image],
     }
   };
 }
@@ -28,8 +28,14 @@ const SeriesPage = async ({ params, searchParams }) => {
   const { seriesId } = params;
   const { page, prev } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
-  const { series, cartoon } = await getSeriesInfo(seriesId);
+  const { series } = await getSeriesInfo(seriesId);
   const { cartoons, count, limit } = await getSeriesList(seriesId, currentPage);
+  const shareArgs = {
+    thumb: series.og_image,
+    title: series.title,
+    desc: `작가 - ${series.writer_nickname}`,
+    rcmd: series.average * series.count,
+  }
 
   const createWriterUrl = () => {
     let url;
@@ -55,7 +61,7 @@ const SeriesPage = async ({ params, searchParams }) => {
       )}
       <div>
         <div>
-          <img src={cartoon.og_image} alt="" />
+          <img src={series.og_image} alt="" />
         </div>
         <h1>{series.title}</h1>
         <h2>
@@ -64,7 +70,7 @@ const SeriesPage = async ({ params, searchParams }) => {
         <span>작가 이름을 눌러 상세 페이지도 확인해보세요</span>
       </div>
       <div className="d-flex align-items-center justify-content-between ps-2">
-        <Share />
+        <Share shareArgs={shareArgs} />
       </div>
       <hr/>
       <ul>

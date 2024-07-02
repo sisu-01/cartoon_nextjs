@@ -26,24 +26,12 @@ const WriterInfo = async ({ params, searchParams }) => {
   const { page, prev } = searchParams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getWriterInfo(writerId);
-  /*
-  _id: new ObjectId('665c7b1103272be39860dc31'),
-  id: 'mmilk5566',
-  nickname_history: [
-      {
-      _id: new ObjectId('665dd7a094dad8038f8b96af'),
-      nickname: '기밀',
-      date: 2024-05-16T15:19:21.000Z
-      }
-  ],
-  first_date: 2024-05-16T15:19:21.000Z,
-  last_date: 2024-05-16T15:19:21.000Z,
-  count: 1,
-  recommend: 50,
-  average: 50
-  */
- const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
-  // const test = await getApi(writerId);
+  const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
+  const shareArgs = {
+    title: `작가 - ${writer.nickname}`,
+    desc: `${writer.nickname}의 만화 목록`,
+    rcmd: writer.recommend
+  }
 
   return (
     <div className={styles.container}>
@@ -105,7 +93,7 @@ const WriterInfo = async ({ params, searchParams }) => {
       </div>
       <div className="d-flex align-items-center justify-content-between ps-2">
         <Button variant="outline-primary" size={"sm"} href={`/series?keyword=${writer.nickname}`}>시리즈 보기</Button>
-        <Share />
+        <Share shareArgs={shareArgs} />
       </div>
       <hr/>
       <ul>

@@ -7,16 +7,19 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import styles from "./share.module.css";
+import Kakao from "./kakao/kakao";
 
-const Share = ({ anon }) => {
-  const pathname = usePathname();
+const Share = ({ shareArgs, anon }) => {
+  let pathname = usePathname();
+  if (anon) {
+    pathname += `?nickname=${anon}`;
+  }
+
   let shareUrl = "";
   if (typeof window !== "undefined") {
     shareUrl = window.location.protocol+"//"+window.location.host+pathname;
   }
-  if (anon) {
-    shareUrl += `?nickname=${anon}`;
-  }
+  shareArgs['path'] = pathname.substring(1);
 
   const [show, setShow] = useState(false);
 
@@ -27,7 +30,6 @@ const Share = ({ anon }) => {
     try {
       await navigator.clipboard.writeText(shareUrl);
       setShow(false);
-      alert('클립보드에 복사되었습니다.');
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +47,7 @@ const Share = ({ anon }) => {
         </Modal.Header>
         <Modal.Body>
           <div>
-            카톡 x 페이스북
+            <Kakao shareArgs={shareArgs} />
           </div>
           <div className={styles.div} onClick={handle}>
             <span className={styles.btn}>
