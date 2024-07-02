@@ -1,7 +1,6 @@
 "use client";
 
 import Pagination from 'react-bootstrap/Pagination';
-import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback } from 'react';
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styles from "./links.module.css";
 import { usePathname } from "next/navigation";
 import Nav from 'react-bootstrap/Nav';

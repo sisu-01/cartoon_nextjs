@@ -1,14 +1,6 @@
 import Paging from "@/components/Paging/paging";
-import { dateFormat, highlightSearchText, isDateWithin14Days } from "@/lib/common";
 import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";
-import Link from "next/link";
-import Sort from "@/components/sort/sort";
-import Cut from "@/components/cut/cut";
-import RandomCartoon from "@/components/random/random";
-import Search from "@/components/search/search";
-import Filter from "@/components/filter/filter";
-import Up from "@/components/up/up";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 
 export const metadata = {

@@ -1,5 +1,5 @@
 import { dateFormat } from "@/lib/common";
-import { getApi, getWriterCartoons, getWriterInfo } from "@/lib/data";
+import { getWriterCartoons, getWriterInfo } from "@/lib/data";
 import styles from "./writerInfo.module.css";
 import Paging from "@/components/Paging/paging";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
