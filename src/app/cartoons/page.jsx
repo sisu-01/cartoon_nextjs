@@ -1,6 +1,9 @@
 import Paging from "@/components/Paging/paging";
 import { getCartoons } from "@/lib/data";
 import styles from "./cartoons.module.css";
+import RandomCartoon from "@/components/random/random";
+import Search from "@/components/search/search";
+import Filter from "@/components/filter/filter";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 
 export const metadata = {
