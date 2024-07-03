@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 
 import styles from "./share.module.css";
 import Kakao from "./kakao/kakao";
+import X from "./x/x";
 
 const Share = ({ shareArgs, anon }) => {
   let pathname = usePathname();
@@ -24,12 +25,12 @@ const Share = ({ shareArgs, anon }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true)
+  const handleShow = () => setShow(true);
   
   const handle = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
-      setShow(false);
+      handleClose();
     } catch (error) {
       console.error(error);
     }
@@ -47,7 +48,8 @@ const Share = ({ shareArgs, anon }) => {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <Kakao shareArgs={shareArgs} />
+            <Kakao shareArgs={shareArgs} handleClose={handleClose} />
+            <X title={shareArgs.title} shareUrl={shareUrl} handleClose={handleClose} />
           </div>
           <div className={styles.div} onClick={handle}>
             <span className={styles.btn}>
