@@ -9,7 +9,7 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./share.module.css";
 import Kakao from "./kakao/kakao";
 import X from "./x/x";
-import Facebook from "./facebook/facebook";
+// import Facebook from "./facebook/facebook";
 
 const Share = ({ shareArgs, anon }) => {
   let pathname = usePathname();
