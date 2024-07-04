@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import styles from "../share.module.css";
 
 const Kakao = (param) => {
   const { shareArgs, handleClose } = param;
@@ -28,9 +29,11 @@ const Kakao = (param) => {
   }
   
   return (
-    <div>
-      <button id="kakaotalk-sharing-btn" onClick={handle}>kakao</button>
-    </div>
+    <li>
+      <a className={styles.a} onClick={handle}>
+        <span>카카오톡</span>
+      </a>
+    </li>
   );
 }
 

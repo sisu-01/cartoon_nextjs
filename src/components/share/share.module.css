@@ -1,3 +1,45 @@
+.snsWrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: -1rem;
+  padding: 12px 12px 10px;
+  box-sizing: border-box;
+}
+.snsWrapper > li {
+  width: 33%;
+  text-align: center;
+}
+.snsWrapper > li > a {
+  font-size: 0;
+  display: block;
+  margin: 6px 0;
+  width: 100% !important;
+  height: 100% !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+.snsWrapper > li > a::before {
+  content: "";
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  background: url('/sns.png') no-repeat;
+  background-size: 300px auto;
+}
+.snsWrapper > li > a > span {
+  display: block;
+  font-size: 16px;
+  color: #000;
+  letter-spacing: -1px;
+  white-space: nowrap;
+  margin-top: 6px;
+  text-align: center;
+}
+.x::before { background-position: -60px 0!important;}
+.facebook::before { background-position: -120px 0!important;}
+
 .div {
   cursor: pointer;
 }

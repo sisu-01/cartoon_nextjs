@@ -9,6 +9,7 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./share.module.css";
 import Kakao from "./kakao/kakao";
 import X from "./x/x";
+import Facebook from "./facebook/facebook";
 
 const Share = ({ shareArgs, anon }) => {
   let pathname = usePathname();
@@ -47,10 +48,11 @@ const Share = ({ shareArgs, anon }) => {
           <Modal.Title>공유하기</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
+          <ul className={styles.snsWrapper}>
             <Kakao shareArgs={shareArgs} handleClose={handleClose} />
             <X title={shareArgs.title} shareUrl={shareUrl} handleClose={handleClose} />
-          </div>
+            {/* <Facebook shareUrl={shareUrl} handleClose={handleClose} /> */}
+          </ul>
           <div className={styles.div} onClick={handle}>
             <span className={styles.btn}>
               복사
