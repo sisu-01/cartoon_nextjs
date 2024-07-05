@@ -9,7 +9,7 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./share.module.css";
 import Kakao from "./kakao/kakao";
 import X from "./x/x";
-// import Facebook from "./facebook/facebook";
+import Facebook from "./facebook/facebook";
 
 const Share = ({ shareArgs, anon }) => {
   let pathname = usePathname();
@@ -51,7 +51,7 @@ const Share = ({ shareArgs, anon }) => {
           <ul className={styles.snsWrapper}>
             <Kakao shareArgs={shareArgs} handleClose={handleClose} />
             <X title={shareArgs.title} shareUrl={shareUrl} handleClose={handleClose} />
-            {/* <Facebook shareUrl={shareUrl} handleClose={handleClose} /> */}
+            <Facebook shareUrl={shareUrl} handleClose={handleClose} />
           </ul>
           <div className={styles.div} onClick={handle}>
             <span className={styles.btn}>
