@@ -37,6 +37,7 @@ const WriterInfo = async ({ params, searchParams }) => {
   const writer = await getWriterInfo(writerId);
   const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
   const shareArgs = {
+    thumb: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/opengraph-image.png`,
     title: `작가 - ${writer.nickname}`,
     desc: `${writer.nickname}의 만화 목록`,
     rcmd: writer.recommend
