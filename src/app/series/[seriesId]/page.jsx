@@ -85,7 +85,7 @@ const SeriesPage = async ({ params, searchParams }) => {
       <div className="d-flex align-items-center justify-content-between ps-2">
         <div>
           <Button variant="outline-primary" className="me-1">개추 {Intl.NumberFormat().format(series.average * series.count)}</Button>
-          <Button variant="outline-primary">마지막 업데이트 {calculateDaysAgo(series.last_update)}일 전</Button>
+          <Button variant="outline-primary">업데이트 {calculateDaysAgo(series.last_update)}일 전</Button>
         </div>
         <Share shareArgs={shareArgs} />
       </div>
