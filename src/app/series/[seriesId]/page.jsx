@@ -19,8 +19,19 @@ export const generateMetadata = async ({params}) => {
         absolute: series.title,
       },
       description: `작가 - ${series.writer_nickname}`,
+      url: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/series/${series.id}`),
+      siteName: "카연갤북마크",
+      type: "website",
       images: [series.og_image],
-    }
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: {
+        absolute: series.title,
+      },
+      description: `작가 - ${series.writer_nickname}`,
+      images: [series.og_image],
+    },
   };
 }
 

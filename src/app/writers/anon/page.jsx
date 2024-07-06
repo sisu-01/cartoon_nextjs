@@ -4,19 +4,28 @@ import Paging from "@/components/Paging/paging";
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 import Button from 'react-bootstrap/Button';
 import Share from "@/components/share/share";
+import { openGraphImage, twitterImage } from "@/app/shared-metadata";
 
 export const generateMetadata = async ({ searchParams }) => {
   const { nickname } = searchParams;
   const writer = await getAnonWriterInfo(nickname);
   return {
     title: writer.nickname,
-    description: "카연갤 작가",
+    description: `${writer.nickname}의 만화 목록`,
     openGraph: {
-      title: {
-        absolute: `${writer.nickname}의 만화 목록`,
-      },
-      description: `카툰-연재 갤러리 북마크`,
-    }
+      title: writer.nickname,
+      description: `${writer.nickname}의 만화 목록`,
+      url: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/anon?nickname=${writer.id}`),
+      siteName: "카연갤북마크",
+      type: "website",
+      ...openGraphImage,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: writer.nickname,
+      description: `${writer.nickname}의 만화 목록`,
+      ...twitterImage,
+    },
   };
 }
 

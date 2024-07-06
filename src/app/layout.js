@@ -4,6 +4,7 @@ import "./globals.css";
 import SSRProvider from 'react-bootstrap/SSRProvider';
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
+import { openGraphImage, twitterImage } from "./shared-metadata";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,17 +13,27 @@ export const metadata = {
     default: "카연갤북마크",
     template: "%s | 카연갤북마크"
   },
-  description: '테스트중입니다.',
+  description: '재밌는 만화가 많아요.',
   metadataBase: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
   openGraph: {
     title: {
       default: "카연갤북마크",
       template: "%s | 카연갤북마크"
     },
-    description: '테스트중입니다.',
+    description: '재밌는 만화가 많아요.',
     url: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
     siteName: "카연갤북마크",
     type: "website",
+    ...openGraphImage,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      default: "카연갤북마크",
+      template: "%s | 카연갤북마크"
+    },
+    description: "재밌는 만화가 많아요.",
+    ...twitterImage,
   },
 }
 
