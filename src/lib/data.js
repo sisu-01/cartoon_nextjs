@@ -180,7 +180,7 @@ export const getSeriesInfo = async (series_id) => {
     await connectToDb();
     const series = await Series.findOne(
       { id: series_id },
-      { _id: false, last_update: false }
+      { _id: false }
     );
     return { series };
   } catch (error) {

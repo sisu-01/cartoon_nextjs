@@ -5,6 +5,7 @@ import Link from "next/link";
 import Button from 'react-bootstrap/Button';
 import CartoonList from "@/components/cartoonsList/cartoonsList";
 import Share from "@/components/share/share";
+import { calculateDaysAgo } from "@/lib/common";
 
 export const generateMetadata = async ({params}) => {
   const { seriesId } = params;
@@ -70,17 +71,22 @@ const SeriesPage = async ({ params, searchParams }) => {
           목록으로
         </Button>
       )}
-      <div>
-        <div>
+      <div className={styles.wrapper}>
+        <div className={styles.thumbnail}>
           <img src={series.og_image} alt="" />
         </div>
-        <h1>{series.title}</h1>
-        <h2>
-          <Link href={createWriterUrl()}>{series.writer_nickname}</Link>
-        </h2>
-        <span>작가 이름을 눌러 상세 페이지도 확인해보세요</span>
+        <div className={styles.info}>
+          <h2 className={styles.title}>{series.title}</h2>
+          <h4>
+            <Link href={createWriterUrl()}>{series.writer_nickname}</Link> · 작가
+          </h4>
+        </div>
       </div>
       <div className="d-flex align-items-center justify-content-between ps-2">
+        <div>
+          <Button variant="outline-primary" className="me-1">개추 {Intl.NumberFormat().format(series.average * series.count)}</Button>
+          <Button variant="outline-primary">마지막 업데이트 {calculateDaysAgo(series.last_update)}일 전</Button>
+        </div>
         <Share shareArgs={shareArgs} />
       </div>
       <hr/>

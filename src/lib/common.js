@@ -66,6 +66,24 @@ export const isWithinSixMonths = (dateString) => {
   return givenDate >= sixMonths;
 }
 
+/**
+ * 주어진 날짜가 오늘로부터 며칠 전인지 계산
+ * @param {String} dateString - '2024-06-22T10:22:34.000Z' 형식의 날짜 문자열
+ * @returns {Number} - 주어진 날짜가 오늘로부터 며칠 전인지 나타내는 일 수
+ */
+export const calculateDaysAgo = (dateString) => {
+  const givenDate = new Date(dateString);
+  const today = new Date();
+
+  // Calculate the difference in time
+  const timeDifference = today - givenDate;
+
+  // Convert time difference from milliseconds to days
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+  return daysDifference;
+};
+
 export const escapeRegex = (string)  => {
   // 정규 표현식에서 특수한 의미를 가지는 모든 문자를 이스케이프 처리
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $&는 매치된 전체 문자열을 의미
