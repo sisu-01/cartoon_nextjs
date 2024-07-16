@@ -24,7 +24,10 @@ const writersSchema = new mongoose.Schema({
   last_date: Date,
   count: Number,
   recommend: Number,
-  average: Number
+  average: Number,
+  naver: String,
+  pixiv: String,
+  x: String
 })
 
 const seriesSchema = new mongoose.Schema({

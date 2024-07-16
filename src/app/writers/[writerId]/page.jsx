@@ -42,6 +42,7 @@ const WriterInfo = async ({ params, searchParams }) => {
     desc: `${writer.nickname}의 만화 목록`,
     rcmd: writer.recommend
   }
+  console.log(writer);
 
   return (
     <div className={styles.container}>
@@ -69,6 +70,11 @@ const WriterInfo = async ({ params, searchParams }) => {
           <span>님의 작품</span>
         </h2>
         <span className="text-secondary">총 {writer.count}</span>
+      </div>
+      <div className="d-flex gap-2">
+        {writer.naver && (<div><Button href={writer.naver} target="_blank" variant="success">naver</Button></div>)}
+        {writer.pixiv && (<div><Button href={writer.pixiv} target="_blank">pixiv</Button></div>)}
+        {writer.x && (<div><Button href={writer.x} target="_blank" variant="dark">x</Button></div>)}
       </div>
       <div className={styles.infoWrapper}>
         {writer.nickname_history.length > 1 && (
