@@ -13,7 +13,8 @@ export const metadata = {
 }
 
 const Writers = async ({ searchParams }) => {
-  const { page, sort, keyword } = searchParams;
+  const params = await searchParams; // searchParams를 await로 처리
+  const { page, sort, keyword } = params;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const currentSort = sort;
   const currentKeyword = keyword ? keyword : false;

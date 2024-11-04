@@ -8,7 +8,8 @@ import Share from "@/components/share/share";
 import { calculateDaysAgo } from "@/lib/common";
 
 export const generateMetadata = async ({params}) => {
-  const { seriesId } = params;
+  const resolvedParams = await params; // params를 await로 처리
+  const { seriesId } = resolvedParams;
   const { series } = await getSeriesInfo(seriesId);
   return {
     title: {
@@ -37,8 +38,10 @@ export const generateMetadata = async ({params}) => {
 }
 
 const SeriesPage = async ({ params, searchParams }) => {
-  const { seriesId } = params;
-  const { page, prev } = searchParams;
+  const resolvedParams = await params; // params를 await로 처리
+  const sparams = await searchParams; // searchParams를 await로 처리
+  const { seriesId } = resolvedParams;
+  const { page, prev } = sparams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const { series } = await getSeriesInfo(seriesId);
   const { cartoons, count, limit } = await getSeriesList(seriesId, currentPage);

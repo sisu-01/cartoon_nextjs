@@ -8,7 +8,8 @@ import Share from "@/components/share/share";
 import { openGraphImage, twitterImage } from "@/app/shared-metadata";
 
 export const generateMetadata = async ({params}) => {
-  const { writerId } = params;
+  const resolvedParams = await params; // params를 await로 처리
+  const { writerId } = resolvedParams;
   const writer = await getWriterInfo(writerId);
   return {
     title: writer.nickname,
@@ -31,8 +32,10 @@ export const generateMetadata = async ({params}) => {
 }
 
 const WriterInfo = async ({ params, searchParams }) => {
-  const { writerId } = params;
-  const { page, prev } = searchParams;
+  const resolvedParams = await params; // params를 await로 처리
+  const { writerId } = resolvedParams;
+  const sparams = await searchParams; // searchParams를 await로 처리
+  const { page, prev } = sparams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getWriterInfo(writerId);
   const { cartoons, count, limit } = await getWriterCartoons(writerId, currentPage);
@@ -42,7 +45,6 @@ const WriterInfo = async ({ params, searchParams }) => {
     desc: `${writer.nickname}의 만화 목록`,
     rcmd: writer.recommend
   }
-  console.log(writer);
 
   return (
     <div className={styles.container}>

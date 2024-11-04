@@ -7,7 +7,8 @@ import Share from "@/components/share/share";
 import { openGraphImage, twitterImage } from "@/app/shared-metadata";
 
 export const generateMetadata = async ({ searchParams }) => {
-  const { nickname } = searchParams;
+  const params = await searchParams; // searchParams를 await로 처리
+  const { nickname } = params;
   const writer = await getAnonWriterInfo(nickname);
   return {
     title: writer.nickname,
@@ -30,7 +31,8 @@ export const generateMetadata = async ({ searchParams }) => {
 }
 
 const Anon = async ({ searchParams }) => {
-  const { nickname, page, prev } = searchParams;
+  const params = await searchParams; // searchParams를 await로 처리
+  const { nickname, page, prev } = params;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getAnonWriterInfo(nickname);
   const { cartoons, count, limit } = await getAnonWriterCartoons(nickname, currentPage);

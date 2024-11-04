@@ -16,7 +16,8 @@ export const metadata = {
 }
 
 const Series = async ({ searchParams }) => {
-  const { page, sort, cut, keyword } = searchParams;
+  const params = await searchParams; // searchParams를 await로 처리
+  const { page, sort, cut, keyword } = params;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const currentSort = sort === "rating" ? true : false;
   const currentCut = (Number(cut) > 0 ? Number(cut) : 0);
