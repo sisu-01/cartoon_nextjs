@@ -3,7 +3,6 @@ import styles from "../share.module.css";
 
 const Kakao = (param) => {
   const { shareArgs, handleClose } = param;
-  console.log(shareArgs);
   const Kakao = useRef(null);
 
   useEffect(() => {
