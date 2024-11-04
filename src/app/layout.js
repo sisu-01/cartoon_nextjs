@@ -5,6 +5,7 @@ import SSRProvider from 'react-bootstrap/SSRProvider';
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import { openGraphImage, twitterImage } from "./shared-metadata";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,7 +44,7 @@ export default function RootLayout({ children }) {
       <meta charSet="utf-8" />
       <meta name='viewport' content='width=device-width, intial-scale=1.0' />
       <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
-      integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous" async></script>
+      integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossOrigin="anonymous" async></script>
       <body className={inter.className}>
         <div className="grid-container">
           <Header />
@@ -54,6 +55,7 @@ export default function RootLayout({ children }) {
         </div>
         <Analytics />
       </body>
+      <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />
     </html>
   );
 }
