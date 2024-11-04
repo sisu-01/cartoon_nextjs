@@ -33,8 +33,8 @@ export const generateMetadata = async ({params}) => {
 
 const WriterInfo = async ({ params, searchParams }) => {
   const resolvedParams = await params; // params를 await로 처리
-  const { writerId } = resolvedParams;
   const sparams = await searchParams; // searchParams를 await로 처리
+  const { writerId } = resolvedParams;
   const { page, prev } = sparams;
   const currentPage = (Number(page) > 0 ? Number(page) : 1);
   const writer = await getWriterInfo(writerId);
