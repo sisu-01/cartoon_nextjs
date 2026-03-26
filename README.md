@@ -4,16 +4,11 @@
 
 ### 🤣 [만화 보러가기 (Click Here)](https://cartoon-nextjs.vercel.app)
 
-# 카연갤 북마크 (아마추어 만화 모음 사이트)
-
-> **디시인사이드 카툰-연재 갤러리의 만화들을 편하게 살펴보세요**<br/>
-> 중구난방한 흩어진 만화들이 군집화되어 시리즈로 편하게 살펴볼 수 있습니다.
-
----
+# 카연갤 북마크
 
 ## 📖 프로젝트 소개
-카툰-연재 갤러리의 만화들을 수집 후 가공하여 사용자들이 보기 쉽게 만들어주는 웹사이트입니다.
-만화들을 추천 순으로 정렬, 필터링하여 원하는 만화를 쉽게 찾아보거나, 시리즈로 군집화된 만화들을 한 눈에 찾아볼 수 있습니다.
+카툰-연재 갤러리의 게시글들을 군집화하여 시리즈별로 보기 편하게 만들어주는 사이트이다.
+
 ### 🎯 프로젝트 목표
 1.  **MongoDB 활용:** 자주 사용하던 RDB에서 벗어나 NoSQL인 MongoDB 사용해보기.
 2.  **Docker 도입** Docker가 유명한 이유가 무엇인지 직접 사용하며 느껴보기.
@@ -26,26 +21,57 @@
 
 ## 🛠 기술 스택
 ### 프론트엔드
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+&rarr;
+<img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
+<img src="https://img.shields.io/badge/React Bootstrap-41E0FD?style=flat-square&logo=reactbootstrap&logoColor=white"/>
 
 ### 백엔드
+<img src="https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=nodedotjs&logoColor=white"/>
+&rarr;
+<img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
+<img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
 
 ### 배포
+<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" />
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+<img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" />
 
 ---
 
 ## 📓 겪언던 문제, 느낌점, 새로 알게된 정보
 
 ### CSR의 한계.
-
-### JS 풀스택 프레임워크인 Nextjs.
+나는 openGraph를 통해 멋들어진 만화 공유 기능을 구현하고 싶었다.<br/>
+하지만 React 페이지를 공유하면 index.html의 하드코딩된 meta 정보가 공유되기 때문에 내가 원하는 기능을 구현할 수 없었다.<br/>
+때문에 나는 SSR인 Nextjs를 도입하여 기능을 구현하였다.
 
 ### 배포의 신 Docker Goat
+Dockerfile과 yml만 만들어두면 컨테이너가 딸깍 하고 나온다<br/>
+파일 그대로 다른 서버에서 똑같이 배포하면 에러 없이 같은 결과물 나온다.<br/>
+ㄹㅇ 신세계다.
 
-### Vercel 컄
+### 배포의 신 Vercel Goat
+연동된 github branch에 push하면 자동으로 배포가 된다.<br/>
+무료 요금제도 있는데 속도도 나쁘지 않다.<br/>
+이걸 왜 지금에서야 알았을까.
 
-### 클러스터링 ㄷㄷㄷㄷㄷㄷㄷㄷ
-
-### 실제 사용자가 있으니 보람있다 ㅎㅎ
+### 군집화(clustering)
+만화 제목이 담긴 텍스트 뭉치들을 가공하여 시리즈로 묶을 수 있다니 놀랍다.
+1.  MeCab으로 제목을 전처리
+2.  TF-IDF로 벡터화
+3.  DBSCAN으로 군집화
 
 ## 💭 개선하고 싶은 점
-### 군집화 부족해
+### DBSCAN 알고리즘의 한계
+DBSCAN은 데이터들의 밀도를 기반으로 군집화하는 알고리즘이다.<br/>
+하지만 모든 데이터(만화)들의 밀도가 동일하지는 않다.<br/>
+때문에 고정된 eps로 군집화 하면 모든 군집들에 동일한 퀄리티를 기대할 수 없다<br/>
+내가 찾아본 개선 방법은 아래와 같다.
+1.  HDBSCAN 사용하기
+2.  DBSCAN 두 번 돌리기
+3.  DBSCAN 후 HDBSCAN 사용하기
+
+등이 있다.<br/>
+마음 같아선 전부 해보고싶지만 시간이 없다 어흑흑
