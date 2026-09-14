@@ -9,7 +9,7 @@ const HomePage = () => {
         alt="카연갤의 기원"
         width={483}
         height={3184}
-        sizes="(max-width: 800px) 100vw, 483px"
+        sizes="100vw"
         priority
         fetchPriority="high"
         style={{
