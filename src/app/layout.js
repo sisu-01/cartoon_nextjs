@@ -1,7 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
-import SSRProvider from 'react-bootstrap/SSRProvider';
+// import SSRProvider from 'react-bootstrap/SSRProvider';
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import { openGraphImage, twitterImage } from "./shared-metadata";
