@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 // import SSRProvider from 'react-bootstrap/SSRProvider';
 import Header from "@/components/header/header";
