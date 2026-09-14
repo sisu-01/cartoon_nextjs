@@ -1,12 +1,13 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 // import SSRProvider from 'react-bootstrap/SSRProvider';
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import { openGraphImage, twitterImage } from "./shared-metadata";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,8 +45,12 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <meta charSet="utf-8" />
       <meta name='viewport' content='width=device-width, intial-scale=1.0' />
-      <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
-      integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossOrigin="anonymous" defer></script>
+      <Script
+        src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+        integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+        crossOrigin="anonymous"
+        defer
+      />
       <body className={inter.className}>
         <div className="grid-container">
           <Header />
