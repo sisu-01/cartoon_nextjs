@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Links from "./links/links";
+import Image from 'next/image';
 
 const Header = () => {
   const expand = "sm";
@@ -20,11 +21,11 @@ const Header = () => {
             <Navbar className="bg-body-tertiary">
               <Container>
                 <Navbar.Brand href="/">
-                  <img
+                  <Image
                     alt=""
-                    src="/favicon.ico"
-                    width="30"
-                    height="30"
+                    src="/logo45.webp"
+                    width={30}
+                    height={30}
                     className="d-inline-block align-top"
                   />{' '}
                   카연갤북마크
