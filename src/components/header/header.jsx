@@ -44,7 +44,7 @@ const Header = () => {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 text-center pe-3">
+                <Nav className="justify-content-end grow text-center pe-3">
                   <Links />
                 </Nav>
               </Offcanvas.Body>
